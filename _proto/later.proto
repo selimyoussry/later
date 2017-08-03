@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package hippoai.later;
+
+option go_package = "github.com/hippoai/later/_proto";
+
+service Mutations {
+  rpc AddInstance(AddInstanceInput) returns (AddInstanceOutput) {};
+  rpc AbortInstances(AbortInstancesInput) returns (AbortInstancesOutput) {};
+  rpc GetInstances(GetInstancesInput) returns (GetInstancesOutput) {};
+}
+
+message Instance {
+  string id = 1;
+  string task_name = 2;
+  string execution_time = 3;
+  string parameters = 4;
+}
+
+message Error {
+  string message = 1;
+}
+
+message AddInstanceInput {
+   string task_name = 1;
+   string execution_time = 2;
+   string parameters = 3;
+}
+
+message AddInstanceOutput {
+  string instance_id = 1;
+  Error error = 2;
+}
+
+message AbortInstancesInput {
+  string task_name = 1;
+  string parameters = 2;
+}
+
+message AbortInstancesOutput {
+  repeated Instance instances = 1;
+  Error error = 2;
+}
+
+message GetInstancesInput {
+  string start = 1;
+  string end = 2;
+}
+
+message GetInstancesOutput {
+  repeated Instance instances = 1;
+  Error erro = 2;
+}
