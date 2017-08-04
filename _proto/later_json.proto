@@ -9,19 +9,25 @@ import "google/api/annotations.proto";
 service Mutations {
   rpc AddInstance(AddInstanceInput) returns (AddInstanceOutput) {
     option (google.api.http) = {
-      post: "/addInstance"
+      post: "/add_instance"
       body: "*"
     };
   };
   rpc AbortInstances(AbortInstancesInput) returns (AbortInstancesOutput) {
     option (google.api.http) = {
-      post: "/abortInstances"
+      post: "/abort_instances"
       body: "*"
     };
   };
   rpc GetInstances(GetInstancesInput) returns (GetInstancesOutput) {
     option (google.api.http) = {
-      post: "/getInstances"
+      post: "/get_instances"
+      body: "*"
+    };
+  };
+  rpc Stats(StatsInput) returns (StatsOutput) {
+    option (google.api.http) = {
+      post: "/stats"
       body: "*"
     };
   };
@@ -39,9 +45,10 @@ message Error {
 }
 
 message AddInstanceInput {
-   string task_name = 1;
-   string execution_time = 2;
-   string parameters = 3;
+  string token = 1;
+  string task_name = 2;
+  string execution_time = 3;
+  string parameters = 4;
 }
 
 message AddInstanceOutput {
@@ -50,8 +57,9 @@ message AddInstanceOutput {
 }
 
 message AbortInstancesInput {
-  string task_name = 1;
-  string parameters = 2;
+  string token = 1;
+  string task_name = 2;
+  string parameters = 3;
 }
 
 message AbortInstancesOutput {
@@ -60,11 +68,21 @@ message AbortInstancesOutput {
 }
 
 message GetInstancesInput {
-  string start = 1;
-  string end = 2;
+  string token = 1;
+  string start = 2;
+  string end = 3;
 }
 
 message GetInstancesOutput {
   repeated Instance instances = 1;
   Error erro = 2;
+}
+
+message StatsInput {
+}
+
+message StatsOutput {
+  string token = 1;
+  int64 n_in_memory = 2;
+  repeated string tasks = 3;
 }

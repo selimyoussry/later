@@ -21,7 +21,7 @@ func (mi *ManagedInstance) Run() {
 	case <-timer.C:
 
 		// Run the task
-		err = mi.Task.Run()
+		err = mi.Task.Run(mi.Instance.Parameters)
 
 		// If there is an error on run, call the OnFail callback
 		if err != nil {

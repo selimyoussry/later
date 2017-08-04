@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "/abortInstances": {
+    "/abort_instances": {
       "post": {
         "operationId": "AbortInstances",
         "responses": {
@@ -41,7 +41,7 @@
         ]
       }
     },
-    "/addInstance": {
+    "/add_instance": {
       "post": {
         "operationId": "AddInstance",
         "responses": {
@@ -67,7 +67,7 @@
         ]
       }
     },
-    "/getInstances": {
+    "/get_instances": {
       "post": {
         "operationId": "GetInstances",
         "responses": {
@@ -92,12 +92,41 @@
           "Mutations"
         ]
       }
+    },
+    "/stats": {
+      "post": {
+        "operationId": "Stats",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterStatsOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterStatsInput"
+            }
+          }
+        ],
+        "tags": [
+          "Mutations"
+        ]
+      }
     }
   },
   "definitions": {
     "laterAbortInstancesInput": {
       "type": "object",
       "properties": {
+        "token": {
+          "type": "string"
+        },
         "task_name": {
           "type": "string"
         },
@@ -123,6 +152,9 @@
     "laterAddInstanceInput": {
       "type": "object",
       "properties": {
+        "token": {
+          "type": "string"
+        },
         "task_name": {
           "type": "string"
         },
@@ -156,6 +188,9 @@
     "laterGetInstancesInput": {
       "type": "object",
       "properties": {
+        "token": {
+          "type": "string"
+        },
         "start": {
           "type": "string"
         },
@@ -192,6 +227,27 @@
         },
         "parameters": {
           "type": "string"
+        }
+      }
+    },
+    "laterStatsInput": {
+      "type": "object"
+    },
+    "laterStatsOutput": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "n_in_memory": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

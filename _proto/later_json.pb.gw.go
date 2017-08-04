@@ -67,6 +67,19 @@ func request_Mutations_GetInstances_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
+func request_Mutations_Stats_0(ctx context.Context, marshaler runtime.Marshaler, client MutationsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq StatsInput
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.Stats(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
 // RegisterMutationsHandlerFromEndpoint is same as RegisterMutationsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterMutationsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
@@ -184,15 +197,46 @@ func RegisterMutationsHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 
 	})
 
+	mux.Handle("POST", pattern_Mutations_Stats_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(ctx)
+		defer cancel()
+		if cn, ok := w.(http.CloseNotifier); ok {
+			go func(done <-chan struct{}, closed <-chan bool) {
+				select {
+				case <-done:
+				case <-closed:
+					cancel()
+				}
+			}(ctx.Done(), cn.CloseNotify())
+		}
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Mutations_Stats_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Mutations_Stats_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
 var (
-	pattern_Mutations_AddInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addInstance"}, ""))
+	pattern_Mutations_AddInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"add_instance"}, ""))
 
-	pattern_Mutations_AbortInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"abortInstances"}, ""))
+	pattern_Mutations_AbortInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"abort_instances"}, ""))
 
-	pattern_Mutations_GetInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getInstances"}, ""))
+	pattern_Mutations_GetInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"get_instances"}, ""))
+
+	pattern_Mutations_Stats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"stats"}, ""))
 )
 
 var (
@@ -201,4 +245,6 @@ var (
 	forward_Mutations_AbortInstances_0 = runtime.ForwardResponseMessage
 
 	forward_Mutations_GetInstances_0 = runtime.ForwardResponseMessage
+
+	forward_Mutations_Stats_0 = runtime.ForwardResponseMessage
 )

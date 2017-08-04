@@ -27,6 +27,11 @@ class MutationsStub(object):
         request_serializer=later__pb2.GetInstancesInput.SerializeToString,
         response_deserializer=later__pb2.GetInstancesOutput.FromString,
         )
+    self.Stats = channel.unary_unary(
+        '/hippoai.later.Mutations/Stats',
+        request_serializer=later__pb2.StatsInput.SerializeToString,
+        response_deserializer=later__pb2.StatsOutput.FromString,
+        )
 
 
 class MutationsServicer(object):
@@ -42,6 +47,11 @@ class MutationsServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def GetInstances(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Stats(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -63,6 +73,11 @@ def add_MutationsServicer_to_server(servicer, server):
           servicer.GetInstances,
           request_deserializer=later__pb2.GetInstancesInput.FromString,
           response_serializer=later__pb2.GetInstancesOutput.SerializeToString,
+      ),
+      'Stats': grpc.unary_unary_rpc_method_handler(
+          servicer.Stats,
+          request_deserializer=later__pb2.StatsInput.FromString,
+          response_serializer=later__pb2.StatsOutput.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

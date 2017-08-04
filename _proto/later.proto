@@ -8,6 +8,7 @@ service Mutations {
   rpc AddInstance(AddInstanceInput) returns (AddInstanceOutput) {};
   rpc AbortInstances(AbortInstancesInput) returns (AbortInstancesOutput) {};
   rpc GetInstances(GetInstancesInput) returns (GetInstancesOutput) {};
+  rpc Stats(StatsInput) returns (StatsOutput) {};
 }
 
 message Instance {
@@ -50,4 +51,13 @@ message GetInstancesInput {
 message GetInstancesOutput {
   repeated Instance instances = 1;
   Error erro = 2;
+}
+
+message StatsInput {
+}
+
+message StatsOutput {
+  string token = 1;
+  int64 n_in_memory = 2;
+  repeated string tasks = 3;
 }

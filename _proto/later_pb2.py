@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='later.proto',
   package='hippoai.later',
   syntax='proto3',
-  serialized_pb=_b('\n\x0blater.proto\x12\rhippoai.later\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\t\"\x18\n\x05\x45rror\x12\x0f\n\x07message\x18\x01 \x01(\t\"Q\n\x10\x41\x64\x64InstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\t\"M\n\x11\x41\x64\x64InstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"<\n\x13\x41\x62ortInstancesInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x12\n\nparameters\x18\x02 \x01(\t\"g\n\x14\x41\x62ortInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"d\n\x12GetInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\x12\"\n\x04\x65rro\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error2\x93\x02\n\tMutations\x12R\n\x0b\x41\x64\x64Instance\x12\x1f.hippoai.later.AddInstanceInput\x1a .hippoai.later.AddInstanceOutput\"\x00\x12[\n\x0e\x41\x62ortInstances\x12\".hippoai.later.AbortInstancesInput\x1a#.hippoai.later.AbortInstancesOutput\"\x00\x12U\n\x0cGetInstances\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x00\x42!Z\x1fgithub.com/hippoai/later/_protob\x06proto3')
+  serialized_pb=_b('\n\x0blater.proto\x12\rhippoai.later\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\t\"\x18\n\x05\x45rror\x12\x0f\n\x07message\x18\x01 \x01(\t\"Q\n\x10\x41\x64\x64InstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\t\"M\n\x11\x41\x64\x64InstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"<\n\x13\x41\x62ortInstancesInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x12\n\nparameters\x18\x02 \x01(\t\"g\n\x14\x41\x62ortInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"d\n\x12GetInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\x12\"\n\x04\x65rro\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"\x0c\n\nStatsInput\"@\n\x0bStatsOutput\x12\r\n\x05token\x18\x01 \x01(\t\x12\x13\n\x0bn_in_memory\x18\x02 \x01(\x03\x12\r\n\x05tasks\x18\x03 \x03(\t2\xd5\x02\n\tMutations\x12R\n\x0b\x41\x64\x64Instance\x12\x1f.hippoai.later.AddInstanceInput\x1a .hippoai.later.AddInstanceOutput\"\x00\x12[\n\x0e\x41\x62ortInstances\x12\".hippoai.later.AbortInstancesInput\x1a#.hippoai.later.AbortInstancesOutput\"\x00\x12U\n\x0cGetInstances\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x00\x12@\n\x05Stats\x12\x19.hippoai.later.StatsInput\x1a\x1a.hippoai.later.StatsOutput\"\x00\x42!Z\x1fgithub.com/hippoai/later/_protob\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -343,6 +343,75 @@ _GETINSTANCESOUTPUT = _descriptor.Descriptor(
   serialized_end=621,
 )
 
+
+_STATSINPUT = _descriptor.Descriptor(
+  name='StatsInput',
+  full_name='hippoai.later.StatsInput',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=623,
+  serialized_end=635,
+)
+
+
+_STATSOUTPUT = _descriptor.Descriptor(
+  name='StatsOutput',
+  full_name='hippoai.later.StatsOutput',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='token', full_name='hippoai.later.StatsOutput.token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='n_in_memory', full_name='hippoai.later.StatsOutput.n_in_memory', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='tasks', full_name='hippoai.later.StatsOutput.tasks', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=637,
+  serialized_end=701,
+)
+
 _ADDINSTANCEOUTPUT.fields_by_name['error'].message_type = _ERROR
 _ABORTINSTANCESOUTPUT.fields_by_name['instances'].message_type = _INSTANCE
 _ABORTINSTANCESOUTPUT.fields_by_name['error'].message_type = _ERROR
@@ -356,6 +425,8 @@ DESCRIPTOR.message_types_by_name['AbortInstancesInput'] = _ABORTINSTANCESINPUT
 DESCRIPTOR.message_types_by_name['AbortInstancesOutput'] = _ABORTINSTANCESOUTPUT
 DESCRIPTOR.message_types_by_name['GetInstancesInput'] = _GETINSTANCESINPUT
 DESCRIPTOR.message_types_by_name['GetInstancesOutput'] = _GETINSTANCESOUTPUT
+DESCRIPTOR.message_types_by_name['StatsInput'] = _STATSINPUT
+DESCRIPTOR.message_types_by_name['StatsOutput'] = _STATSOUTPUT
 
 Instance = _reflection.GeneratedProtocolMessageType('Instance', (_message.Message,), dict(
   DESCRIPTOR = _INSTANCE,
@@ -413,6 +484,20 @@ GetInstancesOutput = _reflection.GeneratedProtocolMessageType('GetInstancesOutpu
   ))
 _sym_db.RegisterMessage(GetInstancesOutput)
 
+StatsInput = _reflection.GeneratedProtocolMessageType('StatsInput', (_message.Message,), dict(
+  DESCRIPTOR = _STATSINPUT,
+  __module__ = 'later_pb2'
+  # @@protoc_insertion_point(class_scope:hippoai.later.StatsInput)
+  ))
+_sym_db.RegisterMessage(StatsInput)
+
+StatsOutput = _reflection.GeneratedProtocolMessageType('StatsOutput', (_message.Message,), dict(
+  DESCRIPTOR = _STATSOUTPUT,
+  __module__ = 'later_pb2'
+  # @@protoc_insertion_point(class_scope:hippoai.later.StatsOutput)
+  ))
+_sym_db.RegisterMessage(StatsOutput)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('Z\037github.com/hippoai/later/_proto'))
@@ -449,6 +534,11 @@ try:
           request_serializer=GetInstancesInput.SerializeToString,
           response_deserializer=GetInstancesOutput.FromString,
           )
+      self.Stats = channel.unary_unary(
+          '/hippoai.later.Mutations/Stats',
+          request_serializer=StatsInput.SerializeToString,
+          response_deserializer=StatsOutput.FromString,
+          )
 
 
   class MutationsServicer(object):
@@ -464,6 +554,11 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def GetInstances(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def Stats(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -486,6 +581,11 @@ try:
             request_deserializer=GetInstancesInput.FromString,
             response_serializer=GetInstancesOutput.SerializeToString,
         ),
+        'Stats': grpc.unary_unary_rpc_method_handler(
+            servicer.Stats,
+            request_deserializer=StatsInput.FromString,
+            response_serializer=StatsOutput.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
         'hippoai.later.Mutations', rpc_method_handlers)
@@ -504,6 +604,8 @@ try:
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def GetInstances(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def Stats(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
   class BetaMutationsStub(object):
@@ -521,6 +623,9 @@ try:
     def GetInstances(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     GetInstances.future = None
+    def Stats(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Stats.future = None
 
 
   def beta_create_Mutations_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
@@ -533,16 +638,19 @@ try:
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesInput.FromString,
       ('hippoai.later.Mutations', 'AddInstance'): AddInstanceInput.FromString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesInput.FromString,
+      ('hippoai.later.Mutations', 'Stats'): StatsInput.FromString,
     }
     response_serializers = {
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesOutput.SerializeToString,
       ('hippoai.later.Mutations', 'AddInstance'): AddInstanceOutput.SerializeToString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesOutput.SerializeToString,
+      ('hippoai.later.Mutations', 'Stats'): StatsOutput.SerializeToString,
     }
     method_implementations = {
       ('hippoai.later.Mutations', 'AbortInstances'): face_utilities.unary_unary_inline(servicer.AbortInstances),
       ('hippoai.later.Mutations', 'AddInstance'): face_utilities.unary_unary_inline(servicer.AddInstance),
       ('hippoai.later.Mutations', 'GetInstances'): face_utilities.unary_unary_inline(servicer.GetInstances),
+      ('hippoai.later.Mutations', 'Stats'): face_utilities.unary_unary_inline(servicer.Stats),
     }
     server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
     return beta_implementations.server(method_implementations, options=server_options)
@@ -558,16 +666,19 @@ try:
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesInput.SerializeToString,
       ('hippoai.later.Mutations', 'AddInstance'): AddInstanceInput.SerializeToString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesInput.SerializeToString,
+      ('hippoai.later.Mutations', 'Stats'): StatsInput.SerializeToString,
     }
     response_deserializers = {
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesOutput.FromString,
       ('hippoai.later.Mutations', 'AddInstance'): AddInstanceOutput.FromString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesOutput.FromString,
+      ('hippoai.later.Mutations', 'Stats'): StatsOutput.FromString,
     }
     cardinalities = {
       'AbortInstances': cardinality.Cardinality.UNARY_UNARY,
       'AddInstance': cardinality.Cardinality.UNARY_UNARY,
       'GetInstances': cardinality.Cardinality.UNARY_UNARY,
+      'Stats': cardinality.Cardinality.UNARY_UNARY,
     }
     stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
     return beta_implementations.dynamic_stub(channel, 'hippoai.later.Mutations', cardinalities, options=stub_options)
