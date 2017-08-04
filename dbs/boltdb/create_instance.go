@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/boltdb/bolt"
+	"github.com/hippoai/later/structures"
 )
 
 // CreateInstance creates a new instance in the database
@@ -20,10 +21,11 @@ func (database *Database) CreateInstance(name string, executionTime time.Time, p
 
 		// Make the key and value
 		instanceID = MakeID(executionTime)
-		value := &Value{
-			ExecutionTime: executionTime.Format(time.RFC3339),
+		value := &structures.Instance{
+			ExecutionTime: executionTime.UTC(),
 			ID:            instanceID,
 			Parameters:    parameters,
+			TaskName:      name,
 		}
 		valueBytes, err := json.Marshal(value)
 

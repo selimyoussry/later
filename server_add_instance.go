@@ -4,6 +4,7 @@ import (
 	"time"
 
 	pb "github.com/hippoai/later/_proto"
+	"github.com/hippoai/later/structures"
 	"golang.org/x/net/context"
 )
 
@@ -26,7 +27,7 @@ func (server *Server) CreateInstance(context context.Context, in *pb.CreateInsta
 	timeframeEnd := time.Now().Add(server.Machine.Parameters.TimeAhead)
 	if executionTime.Before(timeframeEnd) {
 
-		instance := &SimpleInstance{
+		instance := &structures.Instance{
 			ExecutionTime: executionTime,
 			ID:            instanceID,
 			Parameters:    in.GetParameters(),

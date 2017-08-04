@@ -31,10 +31,10 @@ func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesI
 	proto_instances := []*pb.Instance{}
 	for _, instance := range instances {
 		proto_instances = append(proto_instances, &pb.Instance{
-			Id:            instance.GetID(),
-			TaskName:      instance.GetTaskName(),
-			ExecutionTime: instance.GetExecutionTime().Format(time.RFC3339),
-			Parameters:    instance.GetParameters(),
+			Id:            instance.ID,
+			TaskName:      instance.TaskName,
+			ExecutionTime: instance.ExecutionTime.Format(time.RFC3339),
+			Parameters:    instance.Parameters,
 		})
 	}
 

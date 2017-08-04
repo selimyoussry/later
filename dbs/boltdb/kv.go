@@ -16,9 +16,3 @@ func MakeID(executionTime time.Time) string {
 		uuid,
 	)
 }
-
-type Value struct {
-	ExecutionTime string `json:"executionTime"`
-	ID            string `json:"id"`
-	Parameters    []byte `json:"parameters"`
-}

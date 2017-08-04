@@ -1,22 +1,15 @@
 package later
 
-import "time"
-
-type Instance interface {
-	GetExecutionTime() time.Time
-	GetID() string
-	GetParameters() []byte
-	GetTaskName() string
-}
+import "github.com/hippoai/later/structures"
 
 type ManagedInstance struct {
 	AbortChannel chan bool
-	Instance     Instance
+	Instance     *structures.Instance
 	Task         Task
 }
 
 // NewManagedInstance instanciates a new managed instance
-func NewManagedInstance(instance Instance, task Task) *ManagedInstance {
+func NewManagedInstance(instance *structures.Instance, task Task) *ManagedInstance {
 	abortChannel := make(chan bool)
 
 	return &ManagedInstance{
@@ -33,15 +26,15 @@ func (mi *ManagedInstance) Abort() {
 }
 
 // StartInstance stores and starts a particular instance
-func (machine *Machine) StartInstance(instance Instance) {
-	task := machine.Tasks[instance.GetTaskName()]
+func (machine *Machine) StartInstance(instance *structures.Instance) {
+	task := machine.Tasks[instance.TaskName]
 	managedInstance := NewManagedInstance(instance, task)
-	machine.Instances.Store(instance.GetID(), managedInstance)
+	machine.Instances.Store(instance.ID, managedInstance)
 
 	// Launch a goroutine for this instance - which will remove itself
 	// from the map when run
 	go func() {
-		defer machine.Instances.Delete(instance.GetID())
+		defer machine.Instances.Delete(instance.ID)
 		managedInstance.Run()
 	}()
 }

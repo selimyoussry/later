@@ -11,7 +11,7 @@ import (
 func (mi *ManagedInstance) Run() {
 	defer close(mi.AbortChannel)
 
-	wait := mi.Instance.GetExecutionTime().Sub(time.Now())
+	wait := mi.Instance.ExecutionTime.Sub(time.Now())
 	timer := time.NewTimer(wait)
 
 	select {
@@ -20,12 +20,12 @@ func (mi *ManagedInstance) Run() {
 	case <-timer.C:
 
 		// Run the task
-		response, err := mi.Task.Run(mi.Instance.GetParameters())
+		response, err := mi.Task.Run(mi.Instance.Parameters)
 
 		// If there is an error on run, call the OnFail callback
 		if err != nil {
 			goutil.Log("Error on running instance %s - Got %s",
-				mi.Instance.GetID(),
+				mi.Instance.ID,
 				goutil.Stringify(err),
 			)
 
@@ -33,7 +33,7 @@ func (mi *ManagedInstance) Run() {
 			err = mi.Task.OnFail(err)
 			if err != nil {
 				goutil.Log("Error on failing %s - Got %s",
-					mi.Instance.GetID(),
+					mi.Instance.ID,
 					goutil.Stringify(err),
 				)
 			}
@@ -44,7 +44,7 @@ func (mi *ManagedInstance) Run() {
 		err = mi.Task.OnSuccess(response)
 		if err != nil {
 			goutil.Log("Error on success %s - Got %s",
-				mi.Instance.GetID(),
+				mi.Instance.ID,
 				goutil.Stringify(err),
 			)
 		}
@@ -52,11 +52,11 @@ func (mi *ManagedInstance) Run() {
 		// 2 - It was aborted
 	case <-mi.AbortChannel:
 		goutil.Log("Aborting instance %s at %s | Task %s scheduled for %s with parameters %s",
-			mi.Instance.GetID(),
+			mi.Instance.ID,
 			time.Now().String(),
 			mi.Task.GetName(),
-			mi.Instance.GetExecutionTime().String(),
-			goutil.Stringify(mi.Instance.GetParameters()),
+			mi.Instance.ExecutionTime.String(),
+			goutil.Stringify(mi.Instance.Parameters),
 		)
 
 	}
