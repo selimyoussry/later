@@ -26,7 +26,7 @@ func (server *Server) CreateInstance(context context.Context, in *pb.CreateInsta
 	timeframeEnd := time.Now().Add(server.Machine.Parameters.TimeAhead)
 	if executionTime.Before(timeframeEnd) {
 
-		instance := &Instance{
+		instance := &SimpleInstance{
 			ExecutionTime: executionTime,
 			ID:            instanceID,
 			Parameters:    in.GetParameters(),

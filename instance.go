@@ -2,21 +2,21 @@ package later
 
 import "time"
 
-type Instance struct {
-	ExecutionTime time.Time
-	ID            string
-	Parameters    []byte
-	TaskName      string
+type Instance interface {
+	GetExecutionTime() time.Time
+	GetID() string
+	GetParameters() []byte
+	GetTaskName() string
 }
 
 type ManagedInstance struct {
 	AbortChannel chan bool
-	Instance     *Instance
+	Instance     Instance
 	Task         Task
 }
 
 // NewManagedInstance instanciates a new managed instance
-func NewManagedInstance(instance *Instance, task Task) *ManagedInstance {
+func NewManagedInstance(instance Instance, task Task) *ManagedInstance {
 	abortChannel := make(chan bool)
 
 	return &ManagedInstance{
@@ -33,15 +33,15 @@ func (mi *ManagedInstance) Abort() {
 }
 
 // StartInstance stores and starts a particular instance
-func (machine *Machine) StartInstance(instance *Instance) {
-	task := machine.Tasks[instance.TaskName]
+func (machine *Machine) StartInstance(instance Instance) {
+	task := machine.Tasks[instance.GetTaskName()]
 	managedInstance := NewManagedInstance(instance, task)
-	machine.Instances.Store(instance.ID, managedInstance)
+	machine.Instances.Store(instance.GetID(), managedInstance)
 
 	// Launch a goroutine for this instance - which will remove itself
 	// from the map when run
 	go func() {
-		defer machine.Instances.Delete(instance.ID)
+		defer machine.Instances.Delete(instance.GetID())
 		managedInstance.Run()
 	}()
 }
