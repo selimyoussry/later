@@ -5,7 +5,7 @@ import "time"
 type Instance struct {
 	ExecutionTime time.Time
 	ID            string
-	Parameters    interface{}
+	Parameters    []byte
 	TaskName      string
 }
 
@@ -47,25 +47,29 @@ func (machine *Machine) StartInstance(instance *Instance) {
 }
 
 // AbortInstance removes the instances locally and from the database
-func (machine *Machine) AbortInstance(name string, parameters interface{}) error {
+func (machine *Machine) AbortInstances(name string, parameters []byte) ([]string, error) {
 
 	// Remove from the database
-	instanceID, err := machine.Database.AbortInstance(name, parameters)
+	instancesIDs, err := machine.Database.AbortInstances(name, parameters)
 	if err != nil {
-		return err
+		return []string{}, err
 	}
 
-	// Remove locally
-	instanceItf, exists := machine.Instances.Load(instanceID)
+	// Remove locally each instance
+	for _, instanceID := range instancesIDs {
 
-	// If it exsists locally we close it gracefully and then delete
-	// it from the list of instances
-	if exists {
-		managedInstance := instanceItf.(*ManagedInstance)
-		managedInstance.Abort()
-		machine.Instances.Delete(instanceID)
-		machine.Instances.Delete(instanceID)
+		instanceItf, exists := machine.Instances.Load(instanceID)
+
+		// If it exsists locally we close it gracefully and then delete
+		// it from the list of instances
+		if exists {
+			managedInstance := instanceItf.(*ManagedInstance)
+			managedInstance.Abort()
+			machine.Instances.Delete(instanceID)
+			machine.Instances.Delete(instanceID)
+		}
+
 	}
 
-	return nil
+	return instancesIDs, nil
 }

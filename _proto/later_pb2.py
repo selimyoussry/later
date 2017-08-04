@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='later.proto',
   package='hippoai.later',
   syntax='proto3',
-  serialized_pb=_b('\n\x0blater.proto\x12\rhippoai.later\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\t\"\x18\n\x05\x45rror\x12\x0f\n\x07message\x18\x01 \x01(\t\"Q\n\x10\x41\x64\x64InstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\t\"M\n\x11\x41\x64\x64InstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"<\n\x13\x41\x62ortInstancesInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x12\n\nparameters\x18\x02 \x01(\t\"g\n\x14\x41\x62ortInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"d\n\x12GetInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\x12\"\n\x04\x65rro\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"\x0c\n\nStatsInput\"@\n\x0bStatsOutput\x12\r\n\x05token\x18\x01 \x01(\t\x12\x13\n\x0bn_in_memory\x18\x02 \x01(\x03\x12\r\n\x05tasks\x18\x03 \x03(\t2\xd5\x02\n\tMutations\x12R\n\x0b\x41\x64\x64Instance\x12\x1f.hippoai.later.AddInstanceInput\x1a .hippoai.later.AddInstanceOutput\"\x00\x12[\n\x0e\x41\x62ortInstances\x12\".hippoai.later.AbortInstancesInput\x1a#.hippoai.later.AbortInstancesOutput\"\x00\x12U\n\x0cGetInstances\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x00\x12@\n\x05Stats\x12\x19.hippoai.later.StatsInput\x1a\x1a.hippoai.later.StatsOutput\"\x00\x42!Z\x1fgithub.com/hippoai/later/_protob\x06proto3')
+  serialized_pb=_b('\n\x0blater.proto\x12\rhippoai.later\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\x0c\"\x18\n\x05\x45rror\x12\x0f\n\x07message\x18\x01 \x01(\t\"T\n\x13\x43reateInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\x0c\"P\n\x14\x43reateInstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"<\n\x13\x41\x62ortInstancesInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x12\n\nparameters\x18\x02 \x01(\x0c\"R\n\x14\x41\x62ortInstancesOutput\x12\x15\n\rinstances_ids\x18\x01 \x03(\t\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"e\n\x12GetInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\x12#\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x14.hippoai.later.Error\"\x0c\n\nStatsInput\"@\n\x0bStatsOutput\x12\r\n\x05token\x18\x01 \x01(\t\x12\x13\n\x0bn_in_memory\x18\x02 \x01(\x03\x12\r\n\x05tasks\x18\x03 \x03(\t2\xde\x02\n\tMutations\x12[\n\x0e\x43reateInstance\x12\".hippoai.later.CreateInstanceInput\x1a#.hippoai.later.CreateInstanceOutput\"\x00\x12[\n\x0e\x41\x62ortInstances\x12\".hippoai.later.AbortInstancesInput\x1a#.hippoai.later.AbortInstancesOutput\"\x00\x12U\n\x0cGetInstances\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x00\x12@\n\x05Stats\x12\x19.hippoai.later.StatsInput\x1a\x1a.hippoai.later.StatsOutput\"\x00\x42!Z\x1fgithub.com/hippoai/later/_protob\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -56,8 +56,8 @@ _INSTANCE = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='parameters', full_name='hippoai.later.Instance.parameters', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -109,31 +109,31 @@ _ERROR = _descriptor.Descriptor(
 )
 
 
-_ADDINSTANCEINPUT = _descriptor.Descriptor(
-  name='AddInstanceInput',
-  full_name='hippoai.later.AddInstanceInput',
+_CREATEINSTANCEINPUT = _descriptor.Descriptor(
+  name='CreateInstanceInput',
+  full_name='hippoai.later.CreateInstanceInput',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_name', full_name='hippoai.later.AddInstanceInput.task_name', index=0,
+      name='task_name', full_name='hippoai.later.CreateInstanceInput.task_name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='execution_time', full_name='hippoai.later.AddInstanceInput.execution_time', index=1,
+      name='execution_time', full_name='hippoai.later.CreateInstanceInput.execution_time', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='parameters', full_name='hippoai.later.AddInstanceInput.parameters', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='parameters', full_name='hippoai.later.CreateInstanceInput.parameters', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -150,26 +150,26 @@ _ADDINSTANCEINPUT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=143,
-  serialized_end=224,
+  serialized_end=227,
 )
 
 
-_ADDINSTANCEOUTPUT = _descriptor.Descriptor(
-  name='AddInstanceOutput',
-  full_name='hippoai.later.AddInstanceOutput',
+_CREATEINSTANCEOUTPUT = _descriptor.Descriptor(
+  name='CreateInstanceOutput',
+  full_name='hippoai.later.CreateInstanceOutput',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='instance_id', full_name='hippoai.later.AddInstanceOutput.instance_id', index=0,
+      name='instance_id', full_name='hippoai.later.CreateInstanceOutput.instance_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='error', full_name='hippoai.later.AddInstanceOutput.error', index=1,
+      name='error', full_name='hippoai.later.CreateInstanceOutput.error', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -187,8 +187,8 @@ _ADDINSTANCEOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=226,
-  serialized_end=303,
+  serialized_start=229,
+  serialized_end=309,
 )
 
 
@@ -208,8 +208,8 @@ _ABORTINSTANCESINPUT = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='parameters', full_name='hippoai.later.AbortInstancesInput.parameters', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -225,8 +225,8 @@ _ABORTINSTANCESINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=305,
-  serialized_end=365,
+  serialized_start=311,
+  serialized_end=371,
 )
 
 
@@ -238,8 +238,8 @@ _ABORTINSTANCESOUTPUT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='instances', full_name='hippoai.later.AbortInstancesOutput.instances', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      name='instances_ids', full_name='hippoai.later.AbortInstancesOutput.instances_ids', index=0,
+      number=1, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -263,8 +263,8 @@ _ABORTINSTANCESOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=367,
-  serialized_end=470,
+  serialized_start=373,
+  serialized_end=455,
 )
 
 
@@ -301,8 +301,8 @@ _GETINSTANCESINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=472,
-  serialized_end=519,
+  serialized_start=457,
+  serialized_end=504,
 )
 
 
@@ -321,7 +321,7 @@ _GETINSTANCESOUTPUT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='erro', full_name='hippoai.later.GetInstancesOutput.erro', index=1,
+      name='error', full_name='hippoai.later.GetInstancesOutput.error', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -339,8 +339,8 @@ _GETINSTANCESOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=521,
-  serialized_end=621,
+  serialized_start=506,
+  serialized_end=607,
 )
 
 
@@ -363,8 +363,8 @@ _STATSINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=623,
-  serialized_end=635,
+  serialized_start=609,
+  serialized_end=621,
 )
 
 
@@ -408,19 +408,18 @@ _STATSOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=637,
-  serialized_end=701,
+  serialized_start=623,
+  serialized_end=687,
 )
 
-_ADDINSTANCEOUTPUT.fields_by_name['error'].message_type = _ERROR
-_ABORTINSTANCESOUTPUT.fields_by_name['instances'].message_type = _INSTANCE
+_CREATEINSTANCEOUTPUT.fields_by_name['error'].message_type = _ERROR
 _ABORTINSTANCESOUTPUT.fields_by_name['error'].message_type = _ERROR
 _GETINSTANCESOUTPUT.fields_by_name['instances'].message_type = _INSTANCE
-_GETINSTANCESOUTPUT.fields_by_name['erro'].message_type = _ERROR
+_GETINSTANCESOUTPUT.fields_by_name['error'].message_type = _ERROR
 DESCRIPTOR.message_types_by_name['Instance'] = _INSTANCE
 DESCRIPTOR.message_types_by_name['Error'] = _ERROR
-DESCRIPTOR.message_types_by_name['AddInstanceInput'] = _ADDINSTANCEINPUT
-DESCRIPTOR.message_types_by_name['AddInstanceOutput'] = _ADDINSTANCEOUTPUT
+DESCRIPTOR.message_types_by_name['CreateInstanceInput'] = _CREATEINSTANCEINPUT
+DESCRIPTOR.message_types_by_name['CreateInstanceOutput'] = _CREATEINSTANCEOUTPUT
 DESCRIPTOR.message_types_by_name['AbortInstancesInput'] = _ABORTINSTANCESINPUT
 DESCRIPTOR.message_types_by_name['AbortInstancesOutput'] = _ABORTINSTANCESOUTPUT
 DESCRIPTOR.message_types_by_name['GetInstancesInput'] = _GETINSTANCESINPUT
@@ -442,19 +441,19 @@ Error = _reflection.GeneratedProtocolMessageType('Error', (_message.Message,), d
   ))
 _sym_db.RegisterMessage(Error)
 
-AddInstanceInput = _reflection.GeneratedProtocolMessageType('AddInstanceInput', (_message.Message,), dict(
-  DESCRIPTOR = _ADDINSTANCEINPUT,
+CreateInstanceInput = _reflection.GeneratedProtocolMessageType('CreateInstanceInput', (_message.Message,), dict(
+  DESCRIPTOR = _CREATEINSTANCEINPUT,
   __module__ = 'later_pb2'
-  # @@protoc_insertion_point(class_scope:hippoai.later.AddInstanceInput)
+  # @@protoc_insertion_point(class_scope:hippoai.later.CreateInstanceInput)
   ))
-_sym_db.RegisterMessage(AddInstanceInput)
+_sym_db.RegisterMessage(CreateInstanceInput)
 
-AddInstanceOutput = _reflection.GeneratedProtocolMessageType('AddInstanceOutput', (_message.Message,), dict(
-  DESCRIPTOR = _ADDINSTANCEOUTPUT,
+CreateInstanceOutput = _reflection.GeneratedProtocolMessageType('CreateInstanceOutput', (_message.Message,), dict(
+  DESCRIPTOR = _CREATEINSTANCEOUTPUT,
   __module__ = 'later_pb2'
-  # @@protoc_insertion_point(class_scope:hippoai.later.AddInstanceOutput)
+  # @@protoc_insertion_point(class_scope:hippoai.later.CreateInstanceOutput)
   ))
-_sym_db.RegisterMessage(AddInstanceOutput)
+_sym_db.RegisterMessage(CreateInstanceOutput)
 
 AbortInstancesInput = _reflection.GeneratedProtocolMessageType('AbortInstancesInput', (_message.Message,), dict(
   DESCRIPTOR = _ABORTINSTANCESINPUT,
@@ -519,10 +518,10 @@ try:
       Args:
         channel: A grpc.Channel.
       """
-      self.AddInstance = channel.unary_unary(
-          '/hippoai.later.Mutations/AddInstance',
-          request_serializer=AddInstanceInput.SerializeToString,
-          response_deserializer=AddInstanceOutput.FromString,
+      self.CreateInstance = channel.unary_unary(
+          '/hippoai.later.Mutations/CreateInstance',
+          request_serializer=CreateInstanceInput.SerializeToString,
+          response_deserializer=CreateInstanceOutput.FromString,
           )
       self.AbortInstances = channel.unary_unary(
           '/hippoai.later.Mutations/AbortInstances',
@@ -543,7 +542,7 @@ try:
 
   class MutationsServicer(object):
 
-    def AddInstance(self, request, context):
+    def CreateInstance(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -566,10 +565,10 @@ try:
 
   def add_MutationsServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'AddInstance': grpc.unary_unary_rpc_method_handler(
-            servicer.AddInstance,
-            request_deserializer=AddInstanceInput.FromString,
-            response_serializer=AddInstanceOutput.SerializeToString,
+        'CreateInstance': grpc.unary_unary_rpc_method_handler(
+            servicer.CreateInstance,
+            request_deserializer=CreateInstanceInput.FromString,
+            response_serializer=CreateInstanceOutput.SerializeToString,
         ),
         'AbortInstances': grpc.unary_unary_rpc_method_handler(
             servicer.AbortInstances,
@@ -598,7 +597,7 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def AddInstance(self, request, context):
+    def CreateInstance(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def AbortInstances(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
@@ -614,9 +613,9 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def AddInstance(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    def CreateInstance(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
-    AddInstance.future = None
+    CreateInstance.future = None
     def AbortInstances(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     AbortInstances.future = None
@@ -636,19 +635,19 @@ try:
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_deserializers = {
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesInput.FromString,
-      ('hippoai.later.Mutations', 'AddInstance'): AddInstanceInput.FromString,
+      ('hippoai.later.Mutations', 'CreateInstance'): CreateInstanceInput.FromString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesInput.FromString,
       ('hippoai.later.Mutations', 'Stats'): StatsInput.FromString,
     }
     response_serializers = {
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesOutput.SerializeToString,
-      ('hippoai.later.Mutations', 'AddInstance'): AddInstanceOutput.SerializeToString,
+      ('hippoai.later.Mutations', 'CreateInstance'): CreateInstanceOutput.SerializeToString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesOutput.SerializeToString,
       ('hippoai.later.Mutations', 'Stats'): StatsOutput.SerializeToString,
     }
     method_implementations = {
       ('hippoai.later.Mutations', 'AbortInstances'): face_utilities.unary_unary_inline(servicer.AbortInstances),
-      ('hippoai.later.Mutations', 'AddInstance'): face_utilities.unary_unary_inline(servicer.AddInstance),
+      ('hippoai.later.Mutations', 'CreateInstance'): face_utilities.unary_unary_inline(servicer.CreateInstance),
       ('hippoai.later.Mutations', 'GetInstances'): face_utilities.unary_unary_inline(servicer.GetInstances),
       ('hippoai.later.Mutations', 'Stats'): face_utilities.unary_unary_inline(servicer.Stats),
     }
@@ -664,19 +663,19 @@ try:
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_serializers = {
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesInput.SerializeToString,
-      ('hippoai.later.Mutations', 'AddInstance'): AddInstanceInput.SerializeToString,
+      ('hippoai.later.Mutations', 'CreateInstance'): CreateInstanceInput.SerializeToString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesInput.SerializeToString,
       ('hippoai.later.Mutations', 'Stats'): StatsInput.SerializeToString,
     }
     response_deserializers = {
       ('hippoai.later.Mutations', 'AbortInstances'): AbortInstancesOutput.FromString,
-      ('hippoai.later.Mutations', 'AddInstance'): AddInstanceOutput.FromString,
+      ('hippoai.later.Mutations', 'CreateInstance'): CreateInstanceOutput.FromString,
       ('hippoai.later.Mutations', 'GetInstances'): GetInstancesOutput.FromString,
       ('hippoai.later.Mutations', 'Stats'): StatsOutput.FromString,
     }
     cardinalities = {
       'AbortInstances': cardinality.Cardinality.UNARY_UNARY,
-      'AddInstance': cardinality.Cardinality.UNARY_UNARY,
+      'CreateInstance': cardinality.Cardinality.UNARY_UNARY,
       'GetInstances': cardinality.Cardinality.UNARY_UNARY,
       'Stats': cardinality.Cardinality.UNARY_UNARY,
     }

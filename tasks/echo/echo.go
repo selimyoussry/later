@@ -1,16 +1,17 @@
 package echo
 
 import (
+	"encoding/json"
 	"log"
 
-	"github.com/hippoai/goerr"
+	"github.com/hippoai/later/tasks"
 )
 
 type Task struct {
 }
 
 type Parameters struct {
-	Message string `json:"message"`
+	Message *string `json:"message"`
 }
 
 func (task *Task) GetName() string {
@@ -22,7 +23,7 @@ func (task *Task) OnFail(runError error) error {
 	return nil
 }
 
-func (task *Task) OnSuccess() error {
+func (task *Task) OnSuccess(response interface{}) error {
 	log.Println("Echo succeeded")
 
 	return nil
@@ -33,16 +34,14 @@ func (task *Task) OnAbort() error {
 	return nil
 }
 
-func (task *Task) Run(parametersItf interface{}) error {
+func (task *Task) Run(parametersAsBytes []byte) (interface{}, error) {
 
-	parameters, ok := parametersItf.(*Parameters)
-	if !ok {
-		return goerr.New("ERR_CAST", map[string]interface{}{
-			"task": "echo",
-		})
+	var parameters Parameters
+	err := json.Unmarshal(parametersAsBytes, &parameters)
+	if err != nil {
+		return nil, tasks.Err_PayloadDecode("task: echo")
 	}
 
-	log.Printf("Running echo: %s \n", parameters.Message)
-
-	return nil
+	log.Printf("Running echo: %s \n", *parameters.Message)
+	return nil, nil
 }

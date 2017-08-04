@@ -13,7 +13,6 @@ func (mi *ManagedInstance) Run() {
 
 	wait := mi.Instance.ExecutionTime.Sub(time.Now())
 	timer := time.NewTimer(wait)
-	var err error
 
 	select {
 
@@ -21,7 +20,7 @@ func (mi *ManagedInstance) Run() {
 	case <-timer.C:
 
 		// Run the task
-		err = mi.Task.Run(mi.Instance.Parameters)
+		response, err := mi.Task.Run(mi.Instance.Parameters)
 
 		// If there is an error on run, call the OnFail callback
 		if err != nil {
@@ -42,7 +41,7 @@ func (mi *ManagedInstance) Run() {
 		}
 
 		// Otherwise run OnSuccess
-		err = mi.Task.OnSuccess()
+		err = mi.Task.OnSuccess(response)
 		if err != nil {
 			goutil.Log("Error on success %s - Got %s",
 				mi.Instance.ID,

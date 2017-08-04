@@ -4,8 +4,8 @@ type Task interface {
 	GetName() string
 
 	OnFail(runError error) error
-	OnSuccess() error
+	OnSuccess(response interface{}) error
 	OnAbort() error
 
-	Run(parametersItf interface{}) error
+	Run(parametersAsBytes []byte) (interface{}, error)
 }

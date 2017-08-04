@@ -28,15 +28,15 @@ var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
 
-func request_Mutations_AddInstance_0(ctx context.Context, marshaler runtime.Marshaler, client MutationsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AddInstanceInput
+func request_Mutations_CreateInstance_0(ctx context.Context, marshaler runtime.Marshaler, client MutationsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateInstanceInput
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.AddInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
@@ -110,7 +110,7 @@ func RegisterMutationsHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 func RegisterMutationsHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
 	client := NewMutationsClient(conn)
 
-	mux.Handle("POST", pattern_Mutations_AddInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Mutations_CreateInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -128,14 +128,14 @@ func RegisterMutationsHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mutations_AddInstance_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mutations_CreateInstance_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Mutations_AddInstance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Mutations_CreateInstance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -230,7 +230,7 @@ func RegisterMutationsHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 }
 
 var (
-	pattern_Mutations_AddInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"add_instance"}, ""))
+	pattern_Mutations_CreateInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"create_instance"}, ""))
 
 	pattern_Mutations_AbortInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"abort_instances"}, ""))
 
@@ -240,7 +240,7 @@ var (
 )
 
 var (
-	forward_Mutations_AddInstance_0 = runtime.ForwardResponseMessage
+	forward_Mutations_CreateInstance_0 = runtime.ForwardResponseMessage
 
 	forward_Mutations_AbortInstances_0 = runtime.ForwardResponseMessage
 

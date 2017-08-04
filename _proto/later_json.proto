@@ -7,9 +7,9 @@ option go_package = "github.com/hippoai/later/_proto";
 import "google/api/annotations.proto";
 
 service Mutations {
-  rpc AddInstance(AddInstanceInput) returns (AddInstanceOutput) {
+  rpc CreateInstance(CreateInstanceInput) returns (CreateInstanceOutput) {
     option (google.api.http) = {
-      post: "/add_instance"
+      post: "/create_instance"
       body: "*"
     };
   };
@@ -37,21 +37,21 @@ message Instance {
   string id = 1;
   string task_name = 2;
   string execution_time = 3;
-  string parameters = 4;
+  bytes parameters = 4;
 }
 
 message Error {
   string message = 1;
 }
 
-message AddInstanceInput {
+message CreateInstanceInput {
   string token = 1;
   string task_name = 2;
   string execution_time = 3;
-  string parameters = 4;
+  bytes parameters = 4;
 }
 
-message AddInstanceOutput {
+message CreateInstanceOutput {
   string instance_id = 1;
   Error error = 2;
 }
@@ -59,11 +59,11 @@ message AddInstanceOutput {
 message AbortInstancesInput {
   string token = 1;
   string task_name = 2;
-  string parameters = 3;
+  bytes parameters = 3;
 }
 
 message AbortInstancesOutput {
-  repeated Instance instances = 1;
+  repeated string instances_ids = 1;
   Error error = 2;
 }
 

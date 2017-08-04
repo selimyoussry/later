@@ -12,10 +12,10 @@ class MutationsStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.AddInstance = channel.unary_unary(
-        '/hippoai.later.Mutations/AddInstance',
-        request_serializer=later__pb2.AddInstanceInput.SerializeToString,
-        response_deserializer=later__pb2.AddInstanceOutput.FromString,
+    self.CreateInstance = channel.unary_unary(
+        '/hippoai.later.Mutations/CreateInstance',
+        request_serializer=later__pb2.CreateInstanceInput.SerializeToString,
+        response_deserializer=later__pb2.CreateInstanceOutput.FromString,
         )
     self.AbortInstances = channel.unary_unary(
         '/hippoai.later.Mutations/AbortInstances',
@@ -36,7 +36,7 @@ class MutationsStub(object):
 
 class MutationsServicer(object):
 
-  def AddInstance(self, request, context):
+  def CreateInstance(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -59,10 +59,10 @@ class MutationsServicer(object):
 
 def add_MutationsServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'AddInstance': grpc.unary_unary_rpc_method_handler(
-          servicer.AddInstance,
-          request_deserializer=later__pb2.AddInstanceInput.FromString,
-          response_serializer=later__pb2.AddInstanceOutput.SerializeToString,
+      'CreateInstance': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateInstance,
+          request_deserializer=later__pb2.CreateInstanceInput.FromString,
+          response_serializer=later__pb2.CreateInstanceOutput.SerializeToString,
       ),
       'AbortInstances': grpc.unary_unary_rpc_method_handler(
           servicer.AbortInstances,
