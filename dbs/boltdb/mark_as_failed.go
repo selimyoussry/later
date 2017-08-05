@@ -8,7 +8,7 @@ import (
 // - a list of IDs
 // - all for a given task
 // - between a start and end time
-func (database *Database) AbortInstances(taskName string, parameters []byte) ([]string, error) {
+func (database *Database) MarkAsFailed(taskName string, parameters []byte) ([]string, error) {
 
 	var input Input
 	err := json.Unmarshal(parameters, &input)
@@ -17,7 +17,7 @@ func (database *Database) AbortInstances(taskName string, parameters []byte) ([]
 	}
 
 	srcBucketName := bucket(taskName)
-	dstBucketName := []byte(BUCKET_ABORTED)
+	dstBucketName := []byte(BUCKET_FAILED)
 
 	return database.moveInstances(srcBucketName, dstBucketName, input.InstancesIDs)
 

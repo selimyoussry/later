@@ -40,8 +40,14 @@ func NewDatabase(tasks []string) (*Database, error) {
 			return err
 		}
 
-		// Create the completed bucket
-		_, err = tx.CreateBucketIfNotExists([]byte(BUCKET_COMPLETED))
+		// Create the successful bucket
+		_, err = tx.CreateBucketIfNotExists([]byte(BUCKET_SUCCESSFUL))
+		if err != nil {
+			return err
+		}
+
+		// Create the failed bucket
+		_, err = tx.CreateBucketIfNotExists([]byte(BUCKET_FAILED))
 		if err != nil {
 			return err
 		}

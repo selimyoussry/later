@@ -3,9 +3,10 @@ package boltdb
 import "fmt"
 
 const (
-	BUCKET_ABORTED   = "__Aborted"
-	BUCKET_COMPLETED = "__Completed"
-	BUCKET_METADATA  = "__Metadata"
+	BUCKET_ABORTED    = "__Aborted"
+	BUCKET_SUCCESSFUL = "__Successful"
+	BUCKET_FAILED     = "__Failed"
+	BUCKET_METADATA   = "__Metadata"
 
 	KEY_LAST_PULL_TIME = "LastPullTime"
 )
