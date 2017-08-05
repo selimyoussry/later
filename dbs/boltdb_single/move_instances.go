@@ -1,4 +1,4 @@
-package boltdb
+package boltdb_single
 
 import (
 	"log"

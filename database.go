@@ -12,7 +12,7 @@ type Database interface {
 	CreateInstance(taskname string, executionTime time.Time, parameters []byte) (string, error)
 	GetInstances(start, end time.Time) ([]*structures.Instance, error)
 	GetLastPullTime() (*time.Time, error)
-	MarkAsSuccessful(taskName string, parameters []byte) ([]byte, error)
-	MarkAsFailed(taskName string, parameters []byte) ([]byte, error)
+	MarkAsSuccessful(taskName string, instanceID string) error
+	MarkAsFailed(taskName string, instanceID string) error
 	SetPullTime(t time.Time) error
 }

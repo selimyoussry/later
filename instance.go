@@ -35,7 +35,7 @@ func (machine *Machine) StartInstance(instance *structures.Instance) {
 	// from the map when run
 	go func() {
 		defer machine.Instances.Delete(instance.ID)
-		managedInstance.Run()
+		managedInstance.Run(machine)
 	}()
 }
 

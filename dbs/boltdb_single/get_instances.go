@@ -1,4 +1,4 @@
-package boltdb
+package boltdb_single
 
 import (
 	"bytes"
@@ -24,6 +24,8 @@ type KV struct {
 func (database *Database) GetInstances(start, end time.Time) ([]*structures.Instance, error) {
 
 	all := syncmap.Map{}
+
+	log.Println("start end db", start, end)
 
 	// Execute the transaction and store the instance ID outside the scope if successful
 	err := database.DB.View(func(tx *bolt.Tx) error {
@@ -68,21 +70,26 @@ func (database *Database) GetInstances(start, end time.Time) ([]*structures.Inst
 
 	errorsForKeys := []string{}
 	all.Range(func(k interface{}, vItf interface{}) bool {
-		kv := vItf.(*KV)
+		kvs := vItf.([]*KV)
 
-		// Get the key in Boltdb
-		key := string(kv.K)
+		for _, kv := range kvs {
 
-		// Get the instance stored in the database
-		// And if we can't unmarshal it, return the error
-		var instance structures.Instance
-		err := json.Unmarshal(kv.V, &instance)
-		if err != nil {
-			errorsForKeys = append(errorsForKeys, key)
-			return true
+			// Get the key in Boltdb
+			key := string(kv.K)
+
+			// Get the instance stored in the database
+			// And if we can't unmarshal it, return the error
+			var instance structures.Instance
+			err := json.Unmarshal(kv.V, &instance)
+			if err != nil {
+				errorsForKeys = append(errorsForKeys, key)
+				return true
+			}
+
+			instances = append(instances, &instance)
+
 		}
 
-		instances = append(instances, &instance)
 		return true
 	})
 

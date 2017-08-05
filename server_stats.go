@@ -9,8 +9,9 @@ import (
 func (server *Server) Stats(context context.Context, in *pb.StatsInput) (*pb.StatsOutput, error) {
 
 	// Calculate the number
+	n := server.Machine.GetNumberOfLocalInstances()
 	out := &pb.StatsOutput{
-		NInMemory: server.Machine.GetNumberOfLocalInstances(),
+		NInMemory: n,
 	}
 
 	return out, nil

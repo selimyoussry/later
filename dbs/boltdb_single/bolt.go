@@ -1,6 +1,7 @@
-package boltdb
+package boltdb_single
 
 import (
+	"log"
 	"time"
 
 	"github.com/boltdb/bolt"
@@ -64,6 +65,8 @@ func NewDatabase(tasks []string) (*Database, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	log.Println("[BoltDB] Started a database...")
 
 	return &Database{
 		DB:    db,
