@@ -23,8 +23,20 @@ type MachineParameters struct {
 	TimeAhead  time.Duration //  We're going to pull tasks for the next TimeAhead
 }
 
+func GetDefaultMachineParameters() *MachineParameters {
+	return &MachineParameters{
+		Recurrence: 1 * time.Minute,
+		TimeAhead:  2 * time.Minute,
+	}
+}
+
 // NewMachine instanciates
 func NewMachine(database Database, parameters *MachineParameters) *Machine {
+
+	if parameters == nil {
+		parameters = GetDefaultMachineParameters()
+	}
+
 	return &Machine{
 		Database:       database,
 		Instances:      syncmap.Map{},

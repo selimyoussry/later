@@ -1,0 +1,258 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "later_json.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/abort_instances": {
+      "post": {
+        "operationId": "AbortInstances",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterAbortInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterAbortInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "Mutations"
+        ]
+      }
+    },
+    "/create_instance": {
+      "post": {
+        "operationId": "CreateInstance",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterCreateInstanceOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterCreateInstanceInput"
+            }
+          }
+        ],
+        "tags": [
+          "Mutations"
+        ]
+      }
+    },
+    "/get_instances": {
+      "post": {
+        "operationId": "GetInstances",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "Mutations"
+        ]
+      }
+    },
+    "/stats": {
+      "post": {
+        "operationId": "Stats",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterStatsOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterStatsInput"
+            }
+          }
+        ],
+        "tags": [
+          "Mutations"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "laterAbortInstancesInput": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "task_name": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "laterAbortInstancesOutput": {
+      "type": "object",
+      "properties": {
+        "instances_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "error": {
+          "$ref": "#/definitions/laterError"
+        }
+      }
+    },
+    "laterCreateInstanceInput": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "task_name": {
+          "type": "string"
+        },
+        "execution_time": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "laterCreateInstanceOutput": {
+      "type": "object",
+      "properties": {
+        "instance_id": {
+          "type": "string"
+        },
+        "error": {
+          "$ref": "#/definitions/laterError"
+        }
+      }
+    },
+    "laterError": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "laterGetInstancesInput": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        }
+      }
+    },
+    "laterGetInstancesOutput": {
+      "type": "object",
+      "properties": {
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/laterInstance"
+          }
+        },
+        "erro": {
+          "$ref": "#/definitions/laterError"
+        }
+      }
+    },
+    "laterInstance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "task_name": {
+          "type": "string"
+        },
+        "execution_time": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "laterStatsInput": {
+      "type": "object"
+    },
+    "laterStatsOutput": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "n_in_memory": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

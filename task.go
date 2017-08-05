@@ -1,16 +1,11 @@
 package later
 
-import "time"
-
 type Task interface {
 	GetName() string
-	GetExecutionTime() time.Time
-	GetParameters() interface{}
 
-	OnCreate(executionTime time.Time, parameters interface{}) error
 	OnFail(runError error) error
-	OnSuccess() error
+	OnSuccess(response interface{}) error
 	OnAbort() error
 
-	Run() error
+	Run(parametersAsBytes []byte) (interface{}, error)
 }
