@@ -1,4 +1,4 @@
-package boltdb_single
+package boltdb_app_server
 
 import (
 	"bytes"
@@ -24,8 +24,6 @@ type KV struct {
 func (database *Database) GetInstances(start, end time.Time) ([]*structures.Instance, error) {
 
 	all := syncmap.Map{}
-
-	log.Println("start end db", start, end)
 
 	// Execute the transaction and store the instance ID outside the scope if successful
 	err := database.DB.View(func(tx *bolt.Tx) error {

@@ -1,10 +1,10 @@
-package boltdb_single
+package boltdb_app_server
 
 import (
-	"log"
 	"time"
 
 	"github.com/boltdb/bolt"
+	"github.com/hippoai/goutil"
 )
 
 type Database struct {
@@ -15,7 +15,7 @@ type Database struct {
 // Open the database connection
 func NewDatabase(tasks []string) (*Database, error) {
 
-	db, err := bolt.Open("later.db", 0600, &bolt.Options{
+	db, err := bolt.Open(GetPath(), 0600, &bolt.Options{
 		Timeout: 5 * time.Second,
 	})
 
@@ -23,6 +23,7 @@ func NewDatabase(tasks []string) (*Database, error) {
 		return nil, err
 	}
 
+	// Initialize the buckets
 	err = db.Update(func(tx *bolt.Tx) error {
 
 		var err error
@@ -66,7 +67,9 @@ func NewDatabase(tasks []string) (*Database, error) {
 		return nil, err
 	}
 
-	log.Println("[BoltDB] Started a database...")
+	goutil.Log("[BoltDB] Started a database, stored in %s",
+		GetPath(),
+	)
 
 	return &Database{
 		DB:    db,

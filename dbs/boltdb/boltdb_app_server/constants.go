@@ -1,8 +1,12 @@
-package boltdb_single
+package boltdb_app_server
 
 import "fmt"
 
 const (
+	Env_Path     = "BOLTDB_PATH"
+	Default_Path = "./"
+	DB_File_Name = "later.bolt.db"
+
 	BUCKET_ABORTED    = "__Aborted"
 	BUCKET_SUCCESSFUL = "__Successful"
 	BUCKET_FAILED     = "__Failed"

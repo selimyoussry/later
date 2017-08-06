@@ -29,7 +29,7 @@ func (machine *Machine) Loop() error {
 func (machine *Machine) LoopCore() error {
 
 	// 1 - We get all the pending instances for the current timeframe
-	instances, err := machine.Database.GetInstances(
+	instances, err := machine.GetInstances(
 		machine.LatestPullTime.Add(-1*time.Minute),
 		machine.LatestPullTime.Add(machine.Parameters.TimeAhead),
 	)

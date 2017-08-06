@@ -1,0 +1,333 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "definition.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/abort_instance": {
+      "post": {
+        "operationId": "AbortInstance",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltAbortInstanceOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltAbortInstanceInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
+    "/create_instance": {
+      "post": {
+        "operationId": "CreateInstance",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltCreateInstanceOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltCreateInstanceInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
+    "/get_instances": {
+      "post": {
+        "operationId": "GetInstances",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltGetInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltGetInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
+    "/get_last_pull_time": {
+      "post": {
+        "operationId": "GetLastPullTime",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltGetLastPullTimeOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltGetLastPullTimeInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
+    "/mark_as_failed": {
+      "post": {
+        "operationId": "MarkAsFailed",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltMarkAsFailedOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltMarkAsFailedInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
+    "/mark_as_successful": {
+      "post": {
+        "operationId": "MarkAsSuccessful",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltMarkAsSuccessfulOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltMarkAsSuccessfulInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
+    "/set_pull_time": {
+      "post": {
+        "operationId": "SetPullTime",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltSetPullTimeOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltSetPullTimeInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "boltAbortInstanceInput": {
+      "type": "object",
+      "properties": {
+        "task_name": {
+          "type": "string"
+        },
+        "instance_id": {
+          "type": "string"
+        }
+      }
+    },
+    "boltAbortInstanceOutput": {
+      "type": "object"
+    },
+    "boltCreateInstanceInput": {
+      "type": "object",
+      "properties": {
+        "task_name": {
+          "type": "string"
+        },
+        "execution_time": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "boltCreateInstanceOutput": {
+      "type": "object"
+    },
+    "boltGetInstancesInput": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        }
+      }
+    },
+    "boltGetInstancesOutput": {
+      "type": "object",
+      "properties": {
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/boltInstance"
+          }
+        }
+      }
+    },
+    "boltGetLastPullTimeInput": {
+      "type": "object"
+    },
+    "boltGetLastPullTimeOutput": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/boltWrappedTime"
+        }
+      }
+    },
+    "boltInstance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "task_name": {
+          "type": "string"
+        },
+        "execution_time": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "boltMarkAsFailedInput": {
+      "type": "object",
+      "properties": {
+        "task_name": {
+          "type": "string"
+        },
+        "instance_id": {
+          "type": "string"
+        }
+      }
+    },
+    "boltMarkAsFailedOutput": {
+      "type": "object"
+    },
+    "boltMarkAsSuccessfulInput": {
+      "type": "object",
+      "properties": {
+        "task_name": {
+          "type": "string"
+        },
+        "instance_id": {
+          "type": "string"
+        }
+      }
+    },
+    "boltMarkAsSuccessfulOutput": {
+      "type": "object"
+    },
+    "boltSetPullTimeInput": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string"
+        }
+      }
+    },
+    "boltSetPullTimeOutput": {
+      "type": "object"
+    },
+    "boltWrappedTime": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

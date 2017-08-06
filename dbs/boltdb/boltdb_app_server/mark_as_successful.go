@@ -1,4 +1,4 @@
-package boltdb_single
+package boltdb_app_server
 
 // MarkAsSuccessful
 func (database *Database) MarkAsSuccessful(taskName string, instanceID string) error {
