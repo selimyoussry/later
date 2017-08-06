@@ -1,15 +1,8 @@
 package boltdb_app_server
 
 import (
-	"fmt"
-	"log"
-	"net"
-	"net/http"
 	"time"
 
-	"google.golang.org/grpc"
-
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	pb "github.com/hippoai/later/dbs/boltdb/boltdb_app_server/_proto"
 	"golang.org/x/net/context"
 )
@@ -22,7 +15,7 @@ type Server struct {
 // AbortInstance gRPC connector
 func (server *Server) AbortInstance(ctx context.Context, in *pb.AbortInstanceInput) (*pb.AbortInstanceOutput, error) {
 
-	err := server.Database.AbortInstance(in.GetTaskName(), in.GetInstanceId())
+	err := server.Database.AbortInstance(in.GetInstanceId())
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +44,7 @@ func (server *Server) CreateInstance(ctx context.Context, in *pb.CreateInstanceI
 }
 
 // GetInstances gRPC connector
-func (server *Server) GetInstances(ctx context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+func (server *Server) get(ctx context.Context, in *pb.GetInstancesInput, bucketName string) (*pb.GetInstancesOutput, error) {
 
 	start, err := time.Parse(time.RFC3339, in.GetStart())
 	if err != nil {
@@ -63,7 +56,7 @@ func (server *Server) GetInstances(ctx context.Context, in *pb.GetInstancesInput
 		return nil, err
 	}
 
-	instances, err := server.Database.GetInstances(start, end)
+	instances, err := server.Database.get(start, end, bucketName)
 	if err != nil {
 		return nil, err
 	}
@@ -84,33 +77,30 @@ func (server *Server) GetInstances(ctx context.Context, in *pb.GetInstancesInput
 
 }
 
-// GetLastPullTime gRPC connector
-func (server *Server) GetLastPullTime(ctx context.Context, in *pb.GetLastPullTimeInput) (*pb.GetLastPullTimeOutput, error) {
+// GetInstances
+func (server *Server) GetInstances(ctx context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.get(ctx, in, BUCKET_PENDING)
+}
 
-	lastPullTime, err := server.Database.GetLastPullTime()
-	if err != nil {
-		return nil, err
-	}
+// GetAborted
+func (server *Server) GetAborted(ctx context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.get(ctx, in, BUCKET_ABORTED)
+}
 
-	// If it was not set yet
-	if lastPullTime == nil {
-		return &pb.GetLastPullTimeOutput{
-			Time: nil,
-		}, nil
-	}
+// GetSuccessful
+func (server *Server) GetSuccessful(ctx context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.get(ctx, in, BUCKET_SUCCESSFUL)
+}
 
-	return &pb.GetLastPullTimeOutput{
-		Time: &pb.WrappedTime{
-			Time: lastPullTime.Format(time.RFC3339),
-		},
-	}, nil
-
+// GetFailed
+func (server *Server) GetFailed(ctx context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.get(ctx, in, BUCKET_FAILED)
 }
 
 // MarkAsSuccessful gRPC connector
 func (server *Server) MarkAsSuccessful(ctx context.Context, in *pb.MarkAsSuccessfulInput) (*pb.MarkAsSuccessfulOutput, error) {
 
-	err := server.Database.MarkAsSuccessful(in.GetTaskName(), in.GetInstanceId())
+	err := server.Database.MarkAsSuccessful(in.GetInstanceId())
 	if err != nil {
 		return nil, err
 	}
@@ -122,64 +112,11 @@ func (server *Server) MarkAsSuccessful(ctx context.Context, in *pb.MarkAsSuccess
 // MarkAsFailed gRPC connector
 func (server *Server) MarkAsFailed(ctx context.Context, in *pb.MarkAsFailedInput) (*pb.MarkAsFailedOutput, error) {
 
-	err := server.Database.MarkAsFailed(in.GetTaskName(), in.GetInstanceId())
+	err := server.Database.MarkAsFailed(in.GetInstanceId())
 	if err != nil {
 		return nil, err
 	}
 
 	return &pb.MarkAsFailedOutput{}, nil
 
-}
-
-// SetPullTime gRPC connector
-func (server *Server) SetPullTime(ctx context.Context, in *pb.SetPullTimeInput) (*pb.SetPullTimeOutput, error) {
-
-	t, err := time.Parse(time.RFC3339, in.GetTime())
-	if err != nil {
-		return nil, err
-	}
-
-	err = server.Database.SetPullTime(t)
-	if err != nil {
-		return nil, err
-	}
-
-	return &pb.SetPullTimeOutput{}, nil
-
-}
-
-// Run the gRPC server
-func (server *Server) Run_gRPC() error {
-
-	portStr := fmt.Sprintf(":%d", gRPC_Server_Port)
-	lis, err := net.Listen("tcp", portStr)
-	if err != nil {
-		return err
-	}
-
-	grpcServer := grpc.NewServer()
-	pb.RegisterLaterBoltDBServer(grpcServer, server)
-
-	log.Printf("Running gRPC server on port %d \n", gRPC_Server_Port)
-	return grpcServer.Serve(lis)
-}
-
-// Run_HTTP server
-func (server *Server) Run_HTTP() error {
-
-	ctx := context.Background()
-	ctx, cancel := context.WithCancel(ctx)
-	defer cancel()
-
-	mux := runtime.NewServeMux()
-	opts := []grpc.DialOption{grpc.WithInsecure()}
-
-	gRPC_Endpoint := fmt.Sprintf("localhost:%d", gRPC_Server_Port)
-	err := pb.RegisterLaterBoltDBHandlerFromEndpoint(ctx, mux, gRPC_Endpoint, opts)
-	if err != nil {
-		return err
-	}
-
-	portStr := fmt.Sprintf(":%d", HTTP_Server_Port)
-	return http.ListenAndServe(portStr, mux)
 }

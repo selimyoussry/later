@@ -9,7 +9,7 @@ import (
 )
 
 // CreateInstance creates a new instance in the database
-func (database *Database) CreateInstance(name string, executionTime time.Time, parameters []byte) (string, error) {
+func (database *Database) CreateInstance(taskName string, executionTime time.Time, parameters []byte) (string, error) {
 
 	var instanceID string
 
@@ -17,15 +17,18 @@ func (database *Database) CreateInstance(name string, executionTime time.Time, p
 	err := database.DB.Update(func(tx *bolt.Tx) error {
 
 		// Find the bucket
-		b := tx.Bucket(bucket(name))
+		b := tx.Bucket([]byte(BUCKET_PENDING))
+
+		// Make sure it's UTC
+		executionTime = executionTime.UTC()
 
 		// Make the key and value
-		instanceID = MakeID(executionTime)
+		instanceID = MakeID(executionTime, taskName)
 		value := &structures.Instance{
-			ExecutionTime: executionTime.UTC(),
+			ExecutionTime: executionTime,
 			ID:            instanceID,
 			Parameters:    parameters,
-			TaskName:      name,
+			TaskName:      taskName,
 		}
 		valueBytes, err := json.Marshal(value)
 

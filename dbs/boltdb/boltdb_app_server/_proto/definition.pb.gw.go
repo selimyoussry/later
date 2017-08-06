@@ -67,15 +67,41 @@ func request_LaterBoltDB_GetInstances_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_LaterBoltDB_GetLastPullTime_0(ctx context.Context, marshaler runtime.Marshaler, client LaterBoltDBClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLastPullTimeInput
+func request_LaterBoltDB_GetAborted_0(ctx context.Context, marshaler runtime.Marshaler, client LaterBoltDBClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetInstancesInput
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetLastPullTime(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetAborted(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func request_LaterBoltDB_GetSuccessful_0(ctx context.Context, marshaler runtime.Marshaler, client LaterBoltDBClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetInstancesInput
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetSuccessful(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func request_LaterBoltDB_GetFailed_0(ctx context.Context, marshaler runtime.Marshaler, client LaterBoltDBClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetInstancesInput
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetFailed(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
@@ -102,19 +128,6 @@ func request_LaterBoltDB_MarkAsFailed_0(ctx context.Context, marshaler runtime.M
 	}
 
 	msg, err := client.MarkAsFailed(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func request_LaterBoltDB_SetPullTime_0(ctx context.Context, marshaler runtime.Marshaler, client LaterBoltDBClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SetPullTimeInput
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.SetPullTime(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
@@ -236,7 +249,7 @@ func RegisterLaterBoltDBHandler(ctx context.Context, mux *runtime.ServeMux, conn
 
 	})
 
-	mux.Handle("POST", pattern_LaterBoltDB_GetLastPullTime_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_LaterBoltDB_GetAborted_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -254,14 +267,72 @@ func RegisterLaterBoltDBHandler(ctx context.Context, mux *runtime.ServeMux, conn
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_LaterBoltDB_GetLastPullTime_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LaterBoltDB_GetAborted_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_LaterBoltDB_GetLastPullTime_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LaterBoltDB_GetAborted_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_LaterBoltDB_GetSuccessful_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(ctx)
+		defer cancel()
+		if cn, ok := w.(http.CloseNotifier); ok {
+			go func(done <-chan struct{}, closed <-chan bool) {
+				select {
+				case <-done:
+				case <-closed:
+					cancel()
+				}
+			}(ctx.Done(), cn.CloseNotify())
+		}
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_LaterBoltDB_GetSuccessful_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_LaterBoltDB_GetSuccessful_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_LaterBoltDB_GetFailed_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(ctx)
+		defer cancel()
+		if cn, ok := w.(http.CloseNotifier); ok {
+			go func(done <-chan struct{}, closed <-chan bool) {
+				select {
+				case <-done:
+				case <-closed:
+					cancel()
+				}
+			}(ctx.Done(), cn.CloseNotify())
+		}
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_LaterBoltDB_GetFailed_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_LaterBoltDB_GetFailed_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -323,35 +394,6 @@ func RegisterLaterBoltDBHandler(ctx context.Context, mux *runtime.ServeMux, conn
 
 	})
 
-	mux.Handle("POST", pattern_LaterBoltDB_SetPullTime_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(ctx)
-		defer cancel()
-		if cn, ok := w.(http.CloseNotifier); ok {
-			go func(done <-chan struct{}, closed <-chan bool) {
-				select {
-				case <-done:
-				case <-closed:
-					cancel()
-				}
-			}(ctx.Done(), cn.CloseNotify())
-		}
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_LaterBoltDB_SetPullTime_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_LaterBoltDB_SetPullTime_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	return nil
 }
 
@@ -362,13 +404,15 @@ var (
 
 	pattern_LaterBoltDB_GetInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"get_instances"}, ""))
 
-	pattern_LaterBoltDB_GetLastPullTime_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"get_last_pull_time"}, ""))
+	pattern_LaterBoltDB_GetAborted_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"get_aborted"}, ""))
+
+	pattern_LaterBoltDB_GetSuccessful_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"get_successful"}, ""))
+
+	pattern_LaterBoltDB_GetFailed_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"get_failed"}, ""))
 
 	pattern_LaterBoltDB_MarkAsSuccessful_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"mark_as_successful"}, ""))
 
 	pattern_LaterBoltDB_MarkAsFailed_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"mark_as_failed"}, ""))
-
-	pattern_LaterBoltDB_SetPullTime_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"set_pull_time"}, ""))
 )
 
 var (
@@ -378,11 +422,13 @@ var (
 
 	forward_LaterBoltDB_GetInstances_0 = runtime.ForwardResponseMessage
 
-	forward_LaterBoltDB_GetLastPullTime_0 = runtime.ForwardResponseMessage
+	forward_LaterBoltDB_GetAborted_0 = runtime.ForwardResponseMessage
+
+	forward_LaterBoltDB_GetSuccessful_0 = runtime.ForwardResponseMessage
+
+	forward_LaterBoltDB_GetFailed_0 = runtime.ForwardResponseMessage
 
 	forward_LaterBoltDB_MarkAsSuccessful_0 = runtime.ForwardResponseMessage
 
 	forward_LaterBoltDB_MarkAsFailed_0 = runtime.ForwardResponseMessage
-
-	forward_LaterBoltDB_SetPullTime_0 = runtime.ForwardResponseMessage
 )

@@ -59,6 +59,7 @@ func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instan
 			}
 
 			// Save the failed instance in the database
+			err = machine.Database.MarkAsFailed(instance.ID)
 			if err != nil {
 				goutil.Log("Error on saving failed to db %s",
 					goutil.Stringify(err),
@@ -82,7 +83,7 @@ func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instan
 		}
 
 		// Save the success in the database
-		err = machine.Database.MarkAsSuccessful(task.GetName(), instance.ID)
+		err = machine.Database.MarkAsSuccessful(instance.ID)
 		if err != nil {
 			goutil.Log("Error on saving success to db %s",
 				goutil.Stringify(err),

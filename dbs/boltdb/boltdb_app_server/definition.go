@@ -9,12 +9,11 @@ import (
 )
 
 type Database struct {
-	DB    *bolt.DB
-	Tasks []string
+	DB *bolt.DB
 }
 
 // Open the database connection
-func NewDatabase(tasks []string) (*Database, error) {
+func NewDatabase() (*Database, error) {
 
 	var err error
 
@@ -37,7 +36,7 @@ func NewDatabase(tasks []string) (*Database, error) {
 	}
 
 	// Initialize the buckets
-	err = Initialize(db, tasks)
+	err = Initialize(db)
 	if err != nil {
 		return nil, err
 	}
@@ -47,8 +46,7 @@ func NewDatabase(tasks []string) (*Database, error) {
 	)
 
 	return &Database{
-		DB:    db,
-		Tasks: tasks,
+		DB: db,
 	}, nil
 
 }

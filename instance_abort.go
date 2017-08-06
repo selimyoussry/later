@@ -1,10 +1,10 @@
 package later
 
 // AbortInstances removes the instances locally and from the database
-func (machine *Machine) AbortInstance(name string, instanceID string) error {
+func (machine *Machine) AbortInstance(instanceID string) error {
 
 	// Remove all these instances from the database
-	err := machine.Database.AbortInstance(name, instanceID)
+	err := machine.Database.AbortInstance(instanceID)
 	if err != nil {
 		return err
 	}

@@ -27,10 +27,20 @@ class LaterBoltDBStub(object):
         request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
         response_deserializer=definition__pb2.GetInstancesOutput.FromString,
         )
-    self.GetLastPullTime = channel.unary_unary(
-        '/hippoai.later.bolt.LaterBoltDB/GetLastPullTime',
-        request_serializer=definition__pb2.GetLastPullTimeInput.SerializeToString,
-        response_deserializer=definition__pb2.GetLastPullTimeOutput.FromString,
+    self.GetAborted = channel.unary_unary(
+        '/hippoai.later.bolt.LaterBoltDB/GetAborted',
+        request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
+        response_deserializer=definition__pb2.GetInstancesOutput.FromString,
+        )
+    self.GetSuccessful = channel.unary_unary(
+        '/hippoai.later.bolt.LaterBoltDB/GetSuccessful',
+        request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
+        response_deserializer=definition__pb2.GetInstancesOutput.FromString,
+        )
+    self.GetFailed = channel.unary_unary(
+        '/hippoai.later.bolt.LaterBoltDB/GetFailed',
+        request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
+        response_deserializer=definition__pb2.GetInstancesOutput.FromString,
         )
     self.MarkAsSuccessful = channel.unary_unary(
         '/hippoai.later.bolt.LaterBoltDB/MarkAsSuccessful',
@@ -41,11 +51,6 @@ class LaterBoltDBStub(object):
         '/hippoai.later.bolt.LaterBoltDB/MarkAsFailed',
         request_serializer=definition__pb2.MarkAsFailedInput.SerializeToString,
         response_deserializer=definition__pb2.MarkAsFailedOutput.FromString,
-        )
-    self.SetPullTime = channel.unary_unary(
-        '/hippoai.later.bolt.LaterBoltDB/SetPullTime',
-        request_serializer=definition__pb2.SetPullTimeInput.SerializeToString,
-        response_deserializer=definition__pb2.SetPullTimeOutput.FromString,
         )
 
 
@@ -66,7 +71,17 @@ class LaterBoltDBServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def GetLastPullTime(self, request, context):
+  def GetAborted(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetSuccessful(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetFailed(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -77,11 +92,6 @@ class LaterBoltDBServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def MarkAsFailed(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def SetPullTime(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -104,10 +114,20 @@ def add_LaterBoltDBServicer_to_server(servicer, server):
           request_deserializer=definition__pb2.GetInstancesInput.FromString,
           response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
       ),
-      'GetLastPullTime': grpc.unary_unary_rpc_method_handler(
-          servicer.GetLastPullTime,
-          request_deserializer=definition__pb2.GetLastPullTimeInput.FromString,
-          response_serializer=definition__pb2.GetLastPullTimeOutput.SerializeToString,
+      'GetAborted': grpc.unary_unary_rpc_method_handler(
+          servicer.GetAborted,
+          request_deserializer=definition__pb2.GetInstancesInput.FromString,
+          response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
+      ),
+      'GetSuccessful': grpc.unary_unary_rpc_method_handler(
+          servicer.GetSuccessful,
+          request_deserializer=definition__pb2.GetInstancesInput.FromString,
+          response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
+      ),
+      'GetFailed': grpc.unary_unary_rpc_method_handler(
+          servicer.GetFailed,
+          request_deserializer=definition__pb2.GetInstancesInput.FromString,
+          response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
       ),
       'MarkAsSuccessful': grpc.unary_unary_rpc_method_handler(
           servicer.MarkAsSuccessful,
@@ -118,11 +138,6 @@ def add_LaterBoltDBServicer_to_server(servicer, server):
           servicer.MarkAsFailed,
           request_deserializer=definition__pb2.MarkAsFailedInput.FromString,
           response_serializer=definition__pb2.MarkAsFailedOutput.SerializeToString,
-      ),
-      'SetPullTime': grpc.unary_unary_rpc_method_handler(
-          servicer.SetPullTime,
-          request_deserializer=definition__pb2.SetPullTimeInput.FromString,
-          response_serializer=definition__pb2.SetPullTimeOutput.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

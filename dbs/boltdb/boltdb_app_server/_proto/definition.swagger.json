@@ -67,6 +67,58 @@
         ]
       }
     },
+    "/get_aborted": {
+      "post": {
+        "operationId": "GetAborted",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltGetInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltGetInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
+    "/get_failed": {
+      "post": {
+        "operationId": "GetFailed",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/boltGetInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boltGetInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "LaterBoltDB"
+        ]
+      }
+    },
     "/get_instances": {
       "post": {
         "operationId": "GetInstances",
@@ -93,14 +145,14 @@
         ]
       }
     },
-    "/get_last_pull_time": {
+    "/get_successful": {
       "post": {
-        "operationId": "GetLastPullTime",
+        "operationId": "GetSuccessful",
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/boltGetLastPullTimeOutput"
+              "$ref": "#/definitions/boltGetInstancesOutput"
             }
           }
         },
@@ -110,7 +162,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/boltGetLastPullTimeInput"
+              "$ref": "#/definitions/boltGetInstancesInput"
             }
           }
         ],
@@ -170,41 +222,12 @@
           "LaterBoltDB"
         ]
       }
-    },
-    "/set_pull_time": {
-      "post": {
-        "operationId": "SetPullTime",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/boltSetPullTimeOutput"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/boltSetPullTimeInput"
-            }
-          }
-        ],
-        "tags": [
-          "LaterBoltDB"
-        ]
-      }
     }
   },
   "definitions": {
     "boltAbortInstanceInput": {
       "type": "object",
       "properties": {
-        "task_name": {
-          "type": "string"
-        },
         "instance_id": {
           "type": "string"
         }
@@ -258,17 +281,6 @@
         }
       }
     },
-    "boltGetLastPullTimeInput": {
-      "type": "object"
-    },
-    "boltGetLastPullTimeOutput": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/boltWrappedTime"
-        }
-      }
-    },
     "boltInstance": {
       "type": "object",
       "properties": {
@@ -290,9 +302,6 @@
     "boltMarkAsFailedInput": {
       "type": "object",
       "properties": {
-        "task_name": {
-          "type": "string"
-        },
         "instance_id": {
           "type": "string"
         }
@@ -304,9 +313,6 @@
     "boltMarkAsSuccessfulInput": {
       "type": "object",
       "properties": {
-        "task_name": {
-          "type": "string"
-        },
         "instance_id": {
           "type": "string"
         }
@@ -314,25 +320,6 @@
     },
     "boltMarkAsSuccessfulOutput": {
       "type": "object"
-    },
-    "boltSetPullTimeInput": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "type": "string"
-        }
-      }
-    },
-    "boltSetPullTimeOutput": {
-      "type": "object"
-    },
-    "boltWrappedTime": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "type": "string"
-        }
-      }
     }
   }
 }

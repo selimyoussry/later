@@ -25,9 +25,21 @@ service LaterBoltDB {
       body: "*"
     };
   };
-  rpc GetLastPullTime(GetLastPullTimeInput) returns (GetLastPullTimeOutput) {
+  rpc GetAborted(GetInstancesInput) returns (GetInstancesOutput) {
     option (google.api.http) = {
-      post: "/get_last_pull_time"
+      post: "/get_aborted"
+      body: "*"
+    };
+  };
+  rpc GetSuccessful(GetInstancesInput) returns (GetInstancesOutput) {
+    option (google.api.http) = {
+      post: "/get_successful"
+      body: "*"
+    };
+  };
+  rpc GetFailed(GetInstancesInput) returns (GetInstancesOutput) {
+    option (google.api.http) = {
+      post: "/get_failed"
       body: "*"
     };
   };
@@ -40,12 +52,6 @@ service LaterBoltDB {
   rpc MarkAsFailed(MarkAsFailedInput) returns (MarkAsFailedOutput) {
     option (google.api.http) = {
       post: "/mark_as_failed"
-      body: "*"
-    };
-  };
-  rpc SetPullTime(SetPullTimeInput) returns (SetPullTimeOutput) {
-    option (google.api.http) = {
-      post: "/set_pull_time"
       body: "*"
     };
   };
@@ -63,8 +69,7 @@ message WrappedTime {
 };
 
 message AbortInstanceInput {
-  string task_name = 1;
-  string instance_id = 2;
+  string instance_id = 1;
 };
 
 message AbortInstanceOutput {
@@ -89,32 +94,16 @@ message GetInstancesOutput {
   repeated Instance instances = 1;
 };
 
-message GetLastPullTimeInput {
-};
-
-message GetLastPullTimeOutput {
-  WrappedTime time = 1;
-};
-
 message MarkAsSuccessfulInput {
-  string task_name = 1;
-  string instance_id = 2;
+  string instance_id = 1;
 };
 
 message MarkAsSuccessfulOutput{
 };
 
 message MarkAsFailedInput {
-  string task_name = 1;
-  string instance_id = 2;
+  string instance_id = 1;
 };
 
 message MarkAsFailedOutput{
-};
-
-message SetPullTimeInput {
-  string time = 1;
-};
-
-message SetPullTimeOutput {
 };

@@ -1,9 +1,9 @@
 package boltdb_app_server
 
 // MarkAsFailed
-func (database *Database) MarkAsFailed(taskName string, instanceID string) error {
+func (database *Database) MarkAsFailed(instanceID string) error {
 
-	srcBucketName := bucket(taskName)
+	srcBucketName := []byte(BUCKET_PENDING)
 	dstBucketName := []byte(BUCKET_FAILED)
 	instancesIDs := []string{instanceID}
 

@@ -9,9 +9,7 @@ import (
 func main() {
 
 	// Create the database
-	db, err := boltdb_app_server.NewDatabase(
-		[]string{"echo", "bash"},
-	)
+	db, err := boltdb_app_server.NewDatabase()
 	if err != nil {
 		log.Fatal(err)
 	}

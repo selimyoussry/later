@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='definition.proto',
   package='hippoai.later.bolt',
   syntax='proto3',
-  serialized_pb=_b('\n\x10\x64\x65\x66inition.proto\x12\x12hippoai.later.bolt\x1a\x1cgoogle/api/annotations.proto\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\x0c\"\x1b\n\x0bWrappedTime\x12\x0c\n\x04time\x18\x01 \x01(\t\"<\n\x12\x41\x62ortInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x15\n\x13\x41\x62ortInstanceOutput\"T\n\x13\x43reateInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\x0c\"+\n\x14\x43reateInstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"E\n\x12GetInstancesOutput\x12/\n\tinstances\x18\x01 \x03(\x0b\x32\x1c.hippoai.later.bolt.Instance\"\x16\n\x14GetLastPullTimeInput\"F\n\x15GetLastPullTimeOutput\x12-\n\x04time\x18\x01 \x01(\x0b\x32\x1f.hippoai.later.bolt.WrappedTime\"?\n\x15MarkAsSuccessfulInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x18\n\x16MarkAsSuccessfulOutput\";\n\x11MarkAsFailedInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x14\n\x12MarkAsFailedOutput\" \n\x10SetPullTimeInput\x12\x0c\n\x04time\x18\x01 \x01(\t\"\x13\n\x11SetPullTimeOutput2\x8f\x07\n\x0bLaterBoltDB\x12|\n\rAbortInstance\x12&.hippoai.later.bolt.AbortInstanceInput\x1a\'.hippoai.later.bolt.AbortInstanceOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/abort_instance:\x01*\x12\x80\x01\n\x0e\x43reateInstance\x12\'.hippoai.later.bolt.CreateInstanceInput\x1a(.hippoai.later.bolt.CreateInstanceOutput\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/create_instance:\x01*\x12x\n\x0cGetInstances\x12%.hippoai.later.bolt.GetInstancesInput\x1a&.hippoai.later.bolt.GetInstancesOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/get_instances:\x01*\x12\x86\x01\n\x0fGetLastPullTime\x12(.hippoai.later.bolt.GetLastPullTimeInput\x1a).hippoai.later.bolt.GetLastPullTimeOutput\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/get_last_pull_time:\x01*\x12\x89\x01\n\x10MarkAsSuccessful\x12).hippoai.later.bolt.MarkAsSuccessfulInput\x1a*.hippoai.later.bolt.MarkAsSuccessfulOutput\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/mark_as_successful:\x01*\x12y\n\x0cMarkAsFailed\x12%.hippoai.later.bolt.MarkAsFailedInput\x1a&.hippoai.later.bolt.MarkAsFailedOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/mark_as_failed:\x01*\x12u\n\x0bSetPullTime\x12$.hippoai.later.bolt.SetPullTimeInput\x1a%.hippoai.later.bolt.SetPullTimeOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/set_pull_time:\x01*B>Z<github.com/hippoai/later/dbs/boltdb/boltdb_app_server/_protob\x06proto3')
+  serialized_pb=_b('\n\x10\x64\x65\x66inition.proto\x12\x12hippoai.later.bolt\x1a\x1cgoogle/api/annotations.proto\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\x0c\"\x1b\n\x0bWrappedTime\x12\x0c\n\x04time\x18\x01 \x01(\t\")\n\x12\x41\x62ortInstanceInput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"\x15\n\x13\x41\x62ortInstanceOutput\"T\n\x13\x43reateInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\x0c\"+\n\x14\x43reateInstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"E\n\x12GetInstancesOutput\x12/\n\tinstances\x18\x01 \x03(\x0b\x32\x1c.hippoai.later.bolt.Instance\",\n\x15MarkAsSuccessfulInput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"\x18\n\x16MarkAsSuccessfulOutput\"(\n\x11MarkAsFailedInput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"\x14\n\x12MarkAsFailedOutput2\xf5\x07\n\x0bLaterBoltDB\x12|\n\rAbortInstance\x12&.hippoai.later.bolt.AbortInstanceInput\x1a\'.hippoai.later.bolt.AbortInstanceOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/abort_instance:\x01*\x12\x80\x01\n\x0e\x43reateInstance\x12\'.hippoai.later.bolt.CreateInstanceInput\x1a(.hippoai.later.bolt.CreateInstanceOutput\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/create_instance:\x01*\x12x\n\x0cGetInstances\x12%.hippoai.later.bolt.GetInstancesInput\x1a&.hippoai.later.bolt.GetInstancesOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/get_instances:\x01*\x12t\n\nGetAborted\x12%.hippoai.later.bolt.GetInstancesInput\x1a&.hippoai.later.bolt.GetInstancesOutput\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/get_aborted:\x01*\x12z\n\rGetSuccessful\x12%.hippoai.later.bolt.GetInstancesInput\x1a&.hippoai.later.bolt.GetInstancesOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/get_successful:\x01*\x12r\n\tGetFailed\x12%.hippoai.later.bolt.GetInstancesInput\x1a&.hippoai.later.bolt.GetInstancesOutput\"\x16\x82\xd3\xe4\x93\x02\x10\"\x0b/get_failed:\x01*\x12\x89\x01\n\x10MarkAsSuccessful\x12).hippoai.later.bolt.MarkAsSuccessfulInput\x1a*.hippoai.later.bolt.MarkAsSuccessfulOutput\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/mark_as_successful:\x01*\x12y\n\x0cMarkAsFailed\x12%.hippoai.later.bolt.MarkAsFailedInput\x1a&.hippoai.later.bolt.MarkAsFailedOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/mark_as_failed:\x01*B>Z<github.com/hippoai/later/dbs/boltdb/boltdb_app_server/_protob\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -119,15 +119,8 @@ _ABORTINSTANCEINPUT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_name', full_name='hippoai.later.bolt.AbortInstanceInput.task_name', index=0,
+      name='instance_id', full_name='hippoai.later.bolt.AbortInstanceInput.instance_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='instance_id', full_name='hippoai.later.bolt.AbortInstanceInput.instance_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -145,7 +138,7 @@ _ABORTINSTANCEINPUT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=186,
-  serialized_end=246,
+  serialized_end=227,
 )
 
 
@@ -168,8 +161,8 @@ _ABORTINSTANCEOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=248,
-  serialized_end=269,
+  serialized_start=229,
+  serialized_end=250,
 )
 
 
@@ -213,8 +206,8 @@ _CREATEINSTANCEINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=271,
-  serialized_end=355,
+  serialized_start=252,
+  serialized_end=336,
 )
 
 
@@ -244,8 +237,8 @@ _CREATEINSTANCEOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=357,
-  serialized_end=400,
+  serialized_start=338,
+  serialized_end=381,
 )
 
 
@@ -282,8 +275,8 @@ _GETINSTANCESINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=402,
-  serialized_end=449,
+  serialized_start=383,
+  serialized_end=430,
 )
 
 
@@ -313,63 +306,8 @@ _GETINSTANCESOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=451,
-  serialized_end=520,
-)
-
-
-_GETLASTPULLTIMEINPUT = _descriptor.Descriptor(
-  name='GetLastPullTimeInput',
-  full_name='hippoai.later.bolt.GetLastPullTimeInput',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=522,
-  serialized_end=544,
-)
-
-
-_GETLASTPULLTIMEOUTPUT = _descriptor.Descriptor(
-  name='GetLastPullTimeOutput',
-  full_name='hippoai.later.bolt.GetLastPullTimeOutput',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='hippoai.later.bolt.GetLastPullTimeOutput.time', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=546,
-  serialized_end=616,
+  serialized_start=432,
+  serialized_end=501,
 )
 
 
@@ -381,15 +319,8 @@ _MARKASSUCCESSFULINPUT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_name', full_name='hippoai.later.bolt.MarkAsSuccessfulInput.task_name', index=0,
+      name='instance_id', full_name='hippoai.later.bolt.MarkAsSuccessfulInput.instance_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='instance_id', full_name='hippoai.later.bolt.MarkAsSuccessfulInput.instance_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -406,8 +337,8 @@ _MARKASSUCCESSFULINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=618,
-  serialized_end=681,
+  serialized_start=503,
+  serialized_end=547,
 )
 
 
@@ -430,8 +361,8 @@ _MARKASSUCCESSFULOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=683,
-  serialized_end=707,
+  serialized_start=549,
+  serialized_end=573,
 )
 
 
@@ -443,15 +374,8 @@ _MARKASFAILEDINPUT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task_name', full_name='hippoai.later.bolt.MarkAsFailedInput.task_name', index=0,
+      name='instance_id', full_name='hippoai.later.bolt.MarkAsFailedInput.instance_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='instance_id', full_name='hippoai.later.bolt.MarkAsFailedInput.instance_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -468,8 +392,8 @@ _MARKASFAILEDINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=709,
-  serialized_end=768,
+  serialized_start=575,
+  serialized_end=615,
 )
 
 
@@ -492,67 +416,11 @@ _MARKASFAILEDOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=770,
-  serialized_end=790,
-)
-
-
-_SETPULLTIMEINPUT = _descriptor.Descriptor(
-  name='SetPullTimeInput',
-  full_name='hippoai.later.bolt.SetPullTimeInput',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='hippoai.later.bolt.SetPullTimeInput.time', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=792,
-  serialized_end=824,
-)
-
-
-_SETPULLTIMEOUTPUT = _descriptor.Descriptor(
-  name='SetPullTimeOutput',
-  full_name='hippoai.later.bolt.SetPullTimeOutput',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=826,
-  serialized_end=845,
+  serialized_start=617,
+  serialized_end=637,
 )
 
 _GETINSTANCESOUTPUT.fields_by_name['instances'].message_type = _INSTANCE
-_GETLASTPULLTIMEOUTPUT.fields_by_name['time'].message_type = _WRAPPEDTIME
 DESCRIPTOR.message_types_by_name['Instance'] = _INSTANCE
 DESCRIPTOR.message_types_by_name['WrappedTime'] = _WRAPPEDTIME
 DESCRIPTOR.message_types_by_name['AbortInstanceInput'] = _ABORTINSTANCEINPUT
@@ -561,14 +429,10 @@ DESCRIPTOR.message_types_by_name['CreateInstanceInput'] = _CREATEINSTANCEINPUT
 DESCRIPTOR.message_types_by_name['CreateInstanceOutput'] = _CREATEINSTANCEOUTPUT
 DESCRIPTOR.message_types_by_name['GetInstancesInput'] = _GETINSTANCESINPUT
 DESCRIPTOR.message_types_by_name['GetInstancesOutput'] = _GETINSTANCESOUTPUT
-DESCRIPTOR.message_types_by_name['GetLastPullTimeInput'] = _GETLASTPULLTIMEINPUT
-DESCRIPTOR.message_types_by_name['GetLastPullTimeOutput'] = _GETLASTPULLTIMEOUTPUT
 DESCRIPTOR.message_types_by_name['MarkAsSuccessfulInput'] = _MARKASSUCCESSFULINPUT
 DESCRIPTOR.message_types_by_name['MarkAsSuccessfulOutput'] = _MARKASSUCCESSFULOUTPUT
 DESCRIPTOR.message_types_by_name['MarkAsFailedInput'] = _MARKASFAILEDINPUT
 DESCRIPTOR.message_types_by_name['MarkAsFailedOutput'] = _MARKASFAILEDOUTPUT
-DESCRIPTOR.message_types_by_name['SetPullTimeInput'] = _SETPULLTIMEINPUT
-DESCRIPTOR.message_types_by_name['SetPullTimeOutput'] = _SETPULLTIMEOUTPUT
 
 Instance = _reflection.GeneratedProtocolMessageType('Instance', (_message.Message,), dict(
   DESCRIPTOR = _INSTANCE,
@@ -626,20 +490,6 @@ GetInstancesOutput = _reflection.GeneratedProtocolMessageType('GetInstancesOutpu
   ))
 _sym_db.RegisterMessage(GetInstancesOutput)
 
-GetLastPullTimeInput = _reflection.GeneratedProtocolMessageType('GetLastPullTimeInput', (_message.Message,), dict(
-  DESCRIPTOR = _GETLASTPULLTIMEINPUT,
-  __module__ = 'definition_pb2'
-  # @@protoc_insertion_point(class_scope:hippoai.later.bolt.GetLastPullTimeInput)
-  ))
-_sym_db.RegisterMessage(GetLastPullTimeInput)
-
-GetLastPullTimeOutput = _reflection.GeneratedProtocolMessageType('GetLastPullTimeOutput', (_message.Message,), dict(
-  DESCRIPTOR = _GETLASTPULLTIMEOUTPUT,
-  __module__ = 'definition_pb2'
-  # @@protoc_insertion_point(class_scope:hippoai.later.bolt.GetLastPullTimeOutput)
-  ))
-_sym_db.RegisterMessage(GetLastPullTimeOutput)
-
 MarkAsSuccessfulInput = _reflection.GeneratedProtocolMessageType('MarkAsSuccessfulInput', (_message.Message,), dict(
   DESCRIPTOR = _MARKASSUCCESSFULINPUT,
   __module__ = 'definition_pb2'
@@ -667,20 +517,6 @@ MarkAsFailedOutput = _reflection.GeneratedProtocolMessageType('MarkAsFailedOutpu
   # @@protoc_insertion_point(class_scope:hippoai.later.bolt.MarkAsFailedOutput)
   ))
 _sym_db.RegisterMessage(MarkAsFailedOutput)
-
-SetPullTimeInput = _reflection.GeneratedProtocolMessageType('SetPullTimeInput', (_message.Message,), dict(
-  DESCRIPTOR = _SETPULLTIMEINPUT,
-  __module__ = 'definition_pb2'
-  # @@protoc_insertion_point(class_scope:hippoai.later.bolt.SetPullTimeInput)
-  ))
-_sym_db.RegisterMessage(SetPullTimeInput)
-
-SetPullTimeOutput = _reflection.GeneratedProtocolMessageType('SetPullTimeOutput', (_message.Message,), dict(
-  DESCRIPTOR = _SETPULLTIMEOUTPUT,
-  __module__ = 'definition_pb2'
-  # @@protoc_insertion_point(class_scope:hippoai.later.bolt.SetPullTimeOutput)
-  ))
-_sym_db.RegisterMessage(SetPullTimeOutput)
 
 
 DESCRIPTOR.has_options = True
@@ -718,10 +554,20 @@ try:
           request_serializer=GetInstancesInput.SerializeToString,
           response_deserializer=GetInstancesOutput.FromString,
           )
-      self.GetLastPullTime = channel.unary_unary(
-          '/hippoai.later.bolt.LaterBoltDB/GetLastPullTime',
-          request_serializer=GetLastPullTimeInput.SerializeToString,
-          response_deserializer=GetLastPullTimeOutput.FromString,
+      self.GetAborted = channel.unary_unary(
+          '/hippoai.later.bolt.LaterBoltDB/GetAborted',
+          request_serializer=GetInstancesInput.SerializeToString,
+          response_deserializer=GetInstancesOutput.FromString,
+          )
+      self.GetSuccessful = channel.unary_unary(
+          '/hippoai.later.bolt.LaterBoltDB/GetSuccessful',
+          request_serializer=GetInstancesInput.SerializeToString,
+          response_deserializer=GetInstancesOutput.FromString,
+          )
+      self.GetFailed = channel.unary_unary(
+          '/hippoai.later.bolt.LaterBoltDB/GetFailed',
+          request_serializer=GetInstancesInput.SerializeToString,
+          response_deserializer=GetInstancesOutput.FromString,
           )
       self.MarkAsSuccessful = channel.unary_unary(
           '/hippoai.later.bolt.LaterBoltDB/MarkAsSuccessful',
@@ -732,11 +578,6 @@ try:
           '/hippoai.later.bolt.LaterBoltDB/MarkAsFailed',
           request_serializer=MarkAsFailedInput.SerializeToString,
           response_deserializer=MarkAsFailedOutput.FromString,
-          )
-      self.SetPullTime = channel.unary_unary(
-          '/hippoai.later.bolt.LaterBoltDB/SetPullTime',
-          request_serializer=SetPullTimeInput.SerializeToString,
-          response_deserializer=SetPullTimeOutput.FromString,
           )
 
 
@@ -757,7 +598,17 @@ try:
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
-    def GetLastPullTime(self, request, context):
+    def GetAborted(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetSuccessful(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetFailed(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -768,11 +619,6 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def MarkAsFailed(self, request, context):
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SetPullTime(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -795,10 +641,20 @@ try:
             request_deserializer=GetInstancesInput.FromString,
             response_serializer=GetInstancesOutput.SerializeToString,
         ),
-        'GetLastPullTime': grpc.unary_unary_rpc_method_handler(
-            servicer.GetLastPullTime,
-            request_deserializer=GetLastPullTimeInput.FromString,
-            response_serializer=GetLastPullTimeOutput.SerializeToString,
+        'GetAborted': grpc.unary_unary_rpc_method_handler(
+            servicer.GetAborted,
+            request_deserializer=GetInstancesInput.FromString,
+            response_serializer=GetInstancesOutput.SerializeToString,
+        ),
+        'GetSuccessful': grpc.unary_unary_rpc_method_handler(
+            servicer.GetSuccessful,
+            request_deserializer=GetInstancesInput.FromString,
+            response_serializer=GetInstancesOutput.SerializeToString,
+        ),
+        'GetFailed': grpc.unary_unary_rpc_method_handler(
+            servicer.GetFailed,
+            request_deserializer=GetInstancesInput.FromString,
+            response_serializer=GetInstancesOutput.SerializeToString,
         ),
         'MarkAsSuccessful': grpc.unary_unary_rpc_method_handler(
             servicer.MarkAsSuccessful,
@@ -809,11 +665,6 @@ try:
             servicer.MarkAsFailed,
             request_deserializer=MarkAsFailedInput.FromString,
             response_serializer=MarkAsFailedOutput.SerializeToString,
-        ),
-        'SetPullTime': grpc.unary_unary_rpc_method_handler(
-            servicer.SetPullTime,
-            request_deserializer=SetPullTimeInput.FromString,
-            response_serializer=SetPullTimeOutput.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -833,13 +684,15 @@ try:
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def GetInstances(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def GetLastPullTime(self, request, context):
+    def GetAborted(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetSuccessful(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetFailed(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def MarkAsSuccessful(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def MarkAsFailed(self, request, context):
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SetPullTime(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
@@ -858,18 +711,21 @@ try:
     def GetInstances(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     GetInstances.future = None
-    def GetLastPullTime(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    def GetAborted(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
-    GetLastPullTime.future = None
+    GetAborted.future = None
+    def GetSuccessful(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetSuccessful.future = None
+    def GetFailed(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetFailed.future = None
     def MarkAsSuccessful(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     MarkAsSuccessful.future = None
     def MarkAsFailed(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     MarkAsFailed.future = None
-    def SetPullTime(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      raise NotImplementedError()
-    SetPullTime.future = None
 
 
   def beta_create_LaterBoltDB_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
@@ -881,29 +737,32 @@ try:
     request_deserializers = {
       ('hippoai.later.bolt.LaterBoltDB', 'AbortInstance'): AbortInstanceInput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'CreateInstance'): CreateInstanceInput.FromString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetAborted'): GetInstancesInput.FromString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetFailed'): GetInstancesInput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'GetInstances'): GetInstancesInput.FromString,
-      ('hippoai.later.bolt.LaterBoltDB', 'GetLastPullTime'): GetLastPullTimeInput.FromString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetSuccessful'): GetInstancesInput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsFailed'): MarkAsFailedInput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsSuccessful'): MarkAsSuccessfulInput.FromString,
-      ('hippoai.later.bolt.LaterBoltDB', 'SetPullTime'): SetPullTimeInput.FromString,
     }
     response_serializers = {
       ('hippoai.later.bolt.LaterBoltDB', 'AbortInstance'): AbortInstanceOutput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'CreateInstance'): CreateInstanceOutput.SerializeToString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetAborted'): GetInstancesOutput.SerializeToString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetFailed'): GetInstancesOutput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'GetInstances'): GetInstancesOutput.SerializeToString,
-      ('hippoai.later.bolt.LaterBoltDB', 'GetLastPullTime'): GetLastPullTimeOutput.SerializeToString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetSuccessful'): GetInstancesOutput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsFailed'): MarkAsFailedOutput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsSuccessful'): MarkAsSuccessfulOutput.SerializeToString,
-      ('hippoai.later.bolt.LaterBoltDB', 'SetPullTime'): SetPullTimeOutput.SerializeToString,
     }
     method_implementations = {
       ('hippoai.later.bolt.LaterBoltDB', 'AbortInstance'): face_utilities.unary_unary_inline(servicer.AbortInstance),
       ('hippoai.later.bolt.LaterBoltDB', 'CreateInstance'): face_utilities.unary_unary_inline(servicer.CreateInstance),
+      ('hippoai.later.bolt.LaterBoltDB', 'GetAborted'): face_utilities.unary_unary_inline(servicer.GetAborted),
+      ('hippoai.later.bolt.LaterBoltDB', 'GetFailed'): face_utilities.unary_unary_inline(servicer.GetFailed),
       ('hippoai.later.bolt.LaterBoltDB', 'GetInstances'): face_utilities.unary_unary_inline(servicer.GetInstances),
-      ('hippoai.later.bolt.LaterBoltDB', 'GetLastPullTime'): face_utilities.unary_unary_inline(servicer.GetLastPullTime),
+      ('hippoai.later.bolt.LaterBoltDB', 'GetSuccessful'): face_utilities.unary_unary_inline(servicer.GetSuccessful),
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsFailed'): face_utilities.unary_unary_inline(servicer.MarkAsFailed),
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsSuccessful'): face_utilities.unary_unary_inline(servicer.MarkAsSuccessful),
-      ('hippoai.later.bolt.LaterBoltDB', 'SetPullTime'): face_utilities.unary_unary_inline(servicer.SetPullTime),
     }
     server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
     return beta_implementations.server(method_implementations, options=server_options)
@@ -918,29 +777,32 @@ try:
     request_serializers = {
       ('hippoai.later.bolt.LaterBoltDB', 'AbortInstance'): AbortInstanceInput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'CreateInstance'): CreateInstanceInput.SerializeToString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetAborted'): GetInstancesInput.SerializeToString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetFailed'): GetInstancesInput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'GetInstances'): GetInstancesInput.SerializeToString,
-      ('hippoai.later.bolt.LaterBoltDB', 'GetLastPullTime'): GetLastPullTimeInput.SerializeToString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetSuccessful'): GetInstancesInput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsFailed'): MarkAsFailedInput.SerializeToString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsSuccessful'): MarkAsSuccessfulInput.SerializeToString,
-      ('hippoai.later.bolt.LaterBoltDB', 'SetPullTime'): SetPullTimeInput.SerializeToString,
     }
     response_deserializers = {
       ('hippoai.later.bolt.LaterBoltDB', 'AbortInstance'): AbortInstanceOutput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'CreateInstance'): CreateInstanceOutput.FromString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetAborted'): GetInstancesOutput.FromString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetFailed'): GetInstancesOutput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'GetInstances'): GetInstancesOutput.FromString,
-      ('hippoai.later.bolt.LaterBoltDB', 'GetLastPullTime'): GetLastPullTimeOutput.FromString,
+      ('hippoai.later.bolt.LaterBoltDB', 'GetSuccessful'): GetInstancesOutput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsFailed'): MarkAsFailedOutput.FromString,
       ('hippoai.later.bolt.LaterBoltDB', 'MarkAsSuccessful'): MarkAsSuccessfulOutput.FromString,
-      ('hippoai.later.bolt.LaterBoltDB', 'SetPullTime'): SetPullTimeOutput.FromString,
     }
     cardinalities = {
       'AbortInstance': cardinality.Cardinality.UNARY_UNARY,
       'CreateInstance': cardinality.Cardinality.UNARY_UNARY,
+      'GetAborted': cardinality.Cardinality.UNARY_UNARY,
+      'GetFailed': cardinality.Cardinality.UNARY_UNARY,
       'GetInstances': cardinality.Cardinality.UNARY_UNARY,
-      'GetLastPullTime': cardinality.Cardinality.UNARY_UNARY,
+      'GetSuccessful': cardinality.Cardinality.UNARY_UNARY,
       'MarkAsFailed': cardinality.Cardinality.UNARY_UNARY,
       'MarkAsSuccessful': cardinality.Cardinality.UNARY_UNARY,
-      'SetPullTime': cardinality.Cardinality.UNARY_UNARY,
     }
     stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
     return beta_implementations.dynamic_stub(channel, 'hippoai.later.bolt.LaterBoltDB', cardinalities, options=stub_options)

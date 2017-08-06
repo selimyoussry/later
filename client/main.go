@@ -33,7 +33,11 @@ func get_instances() {
 		log.Fatal(err)
 	}
 
-	log.Println(goutil.Pretty(out.GetInstances()))
+	instances := out.GetInstances()
+
+	for _, instance := range instances {
+		log.Println(instance.GetId(), instance.GetExecutionTime(), instance.GetTaskName(), string(instance.GetParameters()))
+	}
 
 }
 

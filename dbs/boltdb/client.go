@@ -25,10 +25,9 @@ func New_gRPC_Channel(gRPC_Address string) (*grpc.ClientConn, pb.LaterBoltDBClie
 }
 
 // AbortInstance gRPC translation
-func (database *Database) AbortInstance(taskName string, instanceID string) error {
+func (database *Database) AbortInstance(instanceID string) error {
 
 	_, err := database.Client.AbortInstance(context.Background(), &pb.AbortInstanceInput{
-		TaskName:   taskName,
 		InstanceId: instanceID,
 	})
 
@@ -85,32 +84,100 @@ func (database *Database) GetInstances(start, end time.Time) ([]*structures.Inst
 	return instances, nil
 }
 
-// GetLastPullTime gRPC translation
-func (database *Database) GetLastPullTime() (*time.Time, error) {
+// GetAborted gRPC translation
+func (database *Database) GetAborted(start, end time.Time) ([]*structures.Instance, error) {
 
-	proto_t, err := database.Client.GetLastPullTime(context.Background(), &pb.GetLastPullTimeInput{})
+	instances := []*structures.Instance{}
+	proto_instances, err := database.Client.GetAborted(context.Background(), &pb.GetInstancesInput{
+		Start: start.Format(time.RFC3339),
+		End:   end.Format(time.RFC3339),
+	})
 	if err != nil {
-		return nil, err
+		return []*structures.Instance{}, err
 	}
 
-	// Time not defined yet
-	if proto_t.Time == nil {
-		return nil, nil
+	for _, proto_instance := range proto_instances.GetInstances() {
+		executionTime, err := time.Parse(time.RFC3339, proto_instance.GetExecutionTime())
+		if err != nil {
+			return []*structures.Instance{}, err
+		}
+
+		instance := &structures.Instance{
+			ExecutionTime: executionTime,
+			ID:            proto_instance.GetId(),
+			TaskName:      proto_instance.GetTaskName(),
+			Parameters:    proto_instance.GetParameters(),
+		}
+		instances = append(instances, instance)
 	}
 
-	t, err := time.Parse(time.RFC3339, proto_t.GetTime().GetTime())
+	return instances, nil
+}
+
+// GetFailed gRPC translation
+func (database *Database) GetFailed(start, end time.Time) ([]*structures.Instance, error) {
+
+	instances := []*structures.Instance{}
+	proto_instances, err := database.Client.GetFailed(context.Background(), &pb.GetInstancesInput{
+		Start: start.Format(time.RFC3339),
+		End:   end.Format(time.RFC3339),
+	})
 	if err != nil {
-		return nil, err
+		return []*structures.Instance{}, err
 	}
 
-	return &t, nil
+	for _, proto_instance := range proto_instances.GetInstances() {
+		executionTime, err := time.Parse(time.RFC3339, proto_instance.GetExecutionTime())
+		if err != nil {
+			return []*structures.Instance{}, err
+		}
+
+		instance := &structures.Instance{
+			ExecutionTime: executionTime,
+			ID:            proto_instance.GetId(),
+			TaskName:      proto_instance.GetTaskName(),
+			Parameters:    proto_instance.GetParameters(),
+		}
+		instances = append(instances, instance)
+	}
+
+	return instances, nil
+}
+
+// GetSuccessful gRPC translation
+func (database *Database) GetSuccessful(start, end time.Time) ([]*structures.Instance, error) {
+
+	instances := []*structures.Instance{}
+	proto_instances, err := database.Client.GetSuccessful(context.Background(), &pb.GetInstancesInput{
+		Start: start.Format(time.RFC3339),
+		End:   end.Format(time.RFC3339),
+	})
+	if err != nil {
+		return []*structures.Instance{}, err
+	}
+
+	for _, proto_instance := range proto_instances.GetInstances() {
+		executionTime, err := time.Parse(time.RFC3339, proto_instance.GetExecutionTime())
+		if err != nil {
+			return []*structures.Instance{}, err
+		}
+
+		instance := &structures.Instance{
+			ExecutionTime: executionTime,
+			ID:            proto_instance.GetId(),
+			TaskName:      proto_instance.GetTaskName(),
+			Parameters:    proto_instance.GetParameters(),
+		}
+		instances = append(instances, instance)
+	}
+
+	return instances, nil
 }
 
 // MarkAsSuccessful gRPC translation
-func (database *Database) MarkAsSuccessful(taskName, instanceID string) error {
+func (database *Database) MarkAsSuccessful(instanceID string) error {
 
 	_, err := database.Client.MarkAsSuccessful(context.Background(), &pb.MarkAsSuccessfulInput{
-		TaskName:   taskName,
 		InstanceId: instanceID,
 	})
 	if err != nil {
@@ -121,24 +188,10 @@ func (database *Database) MarkAsSuccessful(taskName, instanceID string) error {
 }
 
 // MarkAsFailed gRPC translation
-func (database *Database) MarkAsFailed(taskName, instanceID string) error {
+func (database *Database) MarkAsFailed(instanceID string) error {
 
 	_, err := database.Client.MarkAsFailed(context.Background(), &pb.MarkAsFailedInput{
-		TaskName:   taskName,
 		InstanceId: instanceID,
-	})
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// SetPullTime gRPC translation
-func (database *Database) SetPullTime(t time.Time) error {
-
-	_, err := database.Client.SetPullTime(context.Background(), &pb.SetPullTimeInput{
-		Time: t.Format(time.RFC3339),
 	})
 	if err != nil {
 		return err

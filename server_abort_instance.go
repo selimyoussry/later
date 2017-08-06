@@ -9,7 +9,7 @@ import (
 func (server *Server) AbortInstance(context context.Context, in *pb.AbortInstanceInput) (*pb.AbortInstanceOutput, error) {
 
 	// Abort instances both locally and on the database
-	err := server.Machine.AbortInstance(in.GetTaskName(), in.GetInstanceId())
+	err := server.Machine.AbortInstance(in.GetInstanceId())
 	if err != nil {
 		return nil, err
 	}
