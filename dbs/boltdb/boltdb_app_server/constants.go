@@ -13,6 +13,9 @@ const (
 	BUCKET_METADATA   = "__Metadata"
 
 	KEY_LAST_PULL_TIME = "LastPullTime"
+
+	gRPC_Server_Port = 9080
+	HTTP_Server_Port = 8080
 )
 
 func bucket(taskName string) []byte {

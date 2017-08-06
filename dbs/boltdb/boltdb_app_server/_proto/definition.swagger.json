@@ -229,7 +229,12 @@
       }
     },
     "boltCreateInstanceOutput": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "instance_id": {
+          "type": "string"
+        }
+      }
     },
     "boltGetInstancesInput": {
       "type": "object",

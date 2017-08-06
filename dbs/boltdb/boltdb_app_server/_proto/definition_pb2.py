@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='definition.proto',
   package='hippoai.later.bolt',
   syntax='proto3',
-  serialized_pb=_b('\n\x10\x64\x65\x66inition.proto\x12\x12hippoai.later.bolt\x1a\x1cgoogle/api/annotations.proto\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\x0c\"\x1b\n\x0bWrappedTime\x12\x0c\n\x04time\x18\x01 \x01(\t\"<\n\x12\x41\x62ortInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x15\n\x13\x41\x62ortInstanceOutput\"T\n\x13\x43reateInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\x0c\"\x16\n\x14\x43reateInstanceOutput\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"E\n\x12GetInstancesOutput\x12/\n\tinstances\x18\x01 \x03(\x0b\x32\x1c.hippoai.later.bolt.Instance\"\x16\n\x14GetLastPullTimeInput\"F\n\x15GetLastPullTimeOutput\x12-\n\x04time\x18\x01 \x01(\x0b\x32\x1f.hippoai.later.bolt.WrappedTime\"?\n\x15MarkAsSuccessfulInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x18\n\x16MarkAsSuccessfulOutput\";\n\x11MarkAsFailedInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x14\n\x12MarkAsFailedOutput\" \n\x10SetPullTimeInput\x12\x0c\n\x04time\x18\x01 \x01(\t\"\x13\n\x11SetPullTimeOutput2\x8f\x07\n\x0bLaterBoltDB\x12|\n\rAbortInstance\x12&.hippoai.later.bolt.AbortInstanceInput\x1a\'.hippoai.later.bolt.AbortInstanceOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/abort_instance:\x01*\x12\x80\x01\n\x0e\x43reateInstance\x12\'.hippoai.later.bolt.CreateInstanceInput\x1a(.hippoai.later.bolt.CreateInstanceOutput\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/create_instance:\x01*\x12x\n\x0cGetInstances\x12%.hippoai.later.bolt.GetInstancesInput\x1a&.hippoai.later.bolt.GetInstancesOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/get_instances:\x01*\x12\x86\x01\n\x0fGetLastPullTime\x12(.hippoai.later.bolt.GetLastPullTimeInput\x1a).hippoai.later.bolt.GetLastPullTimeOutput\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/get_last_pull_time:\x01*\x12\x89\x01\n\x10MarkAsSuccessful\x12).hippoai.later.bolt.MarkAsSuccessfulInput\x1a*.hippoai.later.bolt.MarkAsSuccessfulOutput\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/mark_as_successful:\x01*\x12y\n\x0cMarkAsFailed\x12%.hippoai.later.bolt.MarkAsFailedInput\x1a&.hippoai.later.bolt.MarkAsFailedOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/mark_as_failed:\x01*\x12u\n\x0bSetPullTime\x12$.hippoai.later.bolt.SetPullTimeInput\x1a%.hippoai.later.bolt.SetPullTimeOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/set_pull_time:\x01*B>Z<github.com/hippoai/later/dbs/boltdb/boltdb_app_server/_protob\x06proto3')
+  serialized_pb=_b('\n\x10\x64\x65\x66inition.proto\x12\x12hippoai.later.bolt\x1a\x1cgoogle/api/annotations.proto\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\x0c\"\x1b\n\x0bWrappedTime\x12\x0c\n\x04time\x18\x01 \x01(\t\"<\n\x12\x41\x62ortInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x15\n\x13\x41\x62ortInstanceOutput\"T\n\x13\x43reateInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\x0c\"+\n\x14\x43reateInstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"E\n\x12GetInstancesOutput\x12/\n\tinstances\x18\x01 \x03(\x0b\x32\x1c.hippoai.later.bolt.Instance\"\x16\n\x14GetLastPullTimeInput\"F\n\x15GetLastPullTimeOutput\x12-\n\x04time\x18\x01 \x01(\x0b\x32\x1f.hippoai.later.bolt.WrappedTime\"?\n\x15MarkAsSuccessfulInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x18\n\x16MarkAsSuccessfulOutput\";\n\x11MarkAsFailedInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x14\n\x12MarkAsFailedOutput\" \n\x10SetPullTimeInput\x12\x0c\n\x04time\x18\x01 \x01(\t\"\x13\n\x11SetPullTimeOutput2\x8f\x07\n\x0bLaterBoltDB\x12|\n\rAbortInstance\x12&.hippoai.later.bolt.AbortInstanceInput\x1a\'.hippoai.later.bolt.AbortInstanceOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/abort_instance:\x01*\x12\x80\x01\n\x0e\x43reateInstance\x12\'.hippoai.later.bolt.CreateInstanceInput\x1a(.hippoai.later.bolt.CreateInstanceOutput\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/create_instance:\x01*\x12x\n\x0cGetInstances\x12%.hippoai.later.bolt.GetInstancesInput\x1a&.hippoai.later.bolt.GetInstancesOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/get_instances:\x01*\x12\x86\x01\n\x0fGetLastPullTime\x12(.hippoai.later.bolt.GetLastPullTimeInput\x1a).hippoai.later.bolt.GetLastPullTimeOutput\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/get_last_pull_time:\x01*\x12\x89\x01\n\x10MarkAsSuccessful\x12).hippoai.later.bolt.MarkAsSuccessfulInput\x1a*.hippoai.later.bolt.MarkAsSuccessfulOutput\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/mark_as_successful:\x01*\x12y\n\x0cMarkAsFailed\x12%.hippoai.later.bolt.MarkAsFailedInput\x1a&.hippoai.later.bolt.MarkAsFailedOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/mark_as_failed:\x01*\x12u\n\x0bSetPullTime\x12$.hippoai.later.bolt.SetPullTimeInput\x1a%.hippoai.later.bolt.SetPullTimeOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/set_pull_time:\x01*B>Z<github.com/hippoai/later/dbs/boltdb/boltdb_app_server/_protob\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -225,6 +225,13 @@ _CREATEINSTANCEOUTPUT = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='instance_id', full_name='hippoai.later.bolt.CreateInstanceOutput.instance_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -238,7 +245,7 @@ _CREATEINSTANCEOUTPUT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=357,
-  serialized_end=379,
+  serialized_end=400,
 )
 
 
@@ -275,8 +282,8 @@ _GETINSTANCESINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=381,
-  serialized_end=428,
+  serialized_start=402,
+  serialized_end=449,
 )
 
 
@@ -306,8 +313,8 @@ _GETINSTANCESOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=430,
-  serialized_end=499,
+  serialized_start=451,
+  serialized_end=520,
 )
 
 
@@ -330,8 +337,8 @@ _GETLASTPULLTIMEINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=501,
-  serialized_end=523,
+  serialized_start=522,
+  serialized_end=544,
 )
 
 
@@ -361,8 +368,8 @@ _GETLASTPULLTIMEOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=525,
-  serialized_end=595,
+  serialized_start=546,
+  serialized_end=616,
 )
 
 
@@ -399,8 +406,8 @@ _MARKASSUCCESSFULINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=597,
-  serialized_end=660,
+  serialized_start=618,
+  serialized_end=681,
 )
 
 
@@ -423,8 +430,8 @@ _MARKASSUCCESSFULOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=662,
-  serialized_end=686,
+  serialized_start=683,
+  serialized_end=707,
 )
 
 
@@ -461,8 +468,8 @@ _MARKASFAILEDINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=688,
-  serialized_end=747,
+  serialized_start=709,
+  serialized_end=768,
 )
 
 
@@ -485,8 +492,8 @@ _MARKASFAILEDOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=749,
-  serialized_end=769,
+  serialized_start=770,
+  serialized_end=790,
 )
 
 
@@ -516,8 +523,8 @@ _SETPULLTIMEINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=771,
-  serialized_end=803,
+  serialized_start=792,
+  serialized_end=824,
 )
 
 
@@ -540,8 +547,8 @@ _SETPULLTIMEOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=805,
-  serialized_end=824,
+  serialized_start=826,
+  serialized_end=845,
 )
 
 _GETINSTANCESOUTPUT.fields_by_name['instances'].message_type = _INSTANCE
