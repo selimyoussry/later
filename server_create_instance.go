@@ -4,7 +4,6 @@ import (
 	"time"
 
 	pb "github.com/hippoai/later/_proto"
-	"github.com/hippoai/later/structures"
 	"golang.org/x/net/context"
 )
 
@@ -17,29 +16,18 @@ func (server *Server) CreateInstance(context context.Context, in *pb.CreateInsta
 		return nil, err
 	}
 
-	// Store the instance in the database
-	instanceID, err := server.Machine.Database.CreateInstance(in.GetTaskName(), executionTime, in.GetParameters())
+	// Create the instance
+	instance, err := server.Machine.CreateInstance(
+		in.GetTaskName(),
+		executionTime,
+		in.GetParameters(),
+	)
 	if err != nil {
 		return nil, err
 	}
 
-	// Pull it locally if it's in the same timeframe
-	timeframeEnd := time.Now().Add(server.Machine.Parameters.TimeAhead)
-	if executionTime.Before(timeframeEnd) {
-
-		instance := &structures.Instance{
-			ExecutionTime: executionTime,
-			ID:            instanceID,
-			Parameters:    in.GetParameters(),
-			TaskName:      in.GetTaskName(),
-		}
-
-		server.Machine.RunInstanceIfNotAlreadyThere(instance)
-
-	}
-
 	out := &pb.CreateInstanceOutput{
-		InstanceId: instanceID,
+		InstanceId: instance.ID,
 	}
 
 	return out, nil

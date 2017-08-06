@@ -1,4 +1,4 @@
-package laterutil
+package util
 
 import "time"
 

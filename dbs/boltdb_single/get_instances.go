@@ -11,8 +11,8 @@ import (
 
 	"github.com/boltdb/bolt"
 	"github.com/hippoai/goutil"
-	"github.com/hippoai/later/laterutil"
 	"github.com/hippoai/later/structures"
+	laterutil "github.com/hippoai/later/util"
 )
 
 type KV struct {

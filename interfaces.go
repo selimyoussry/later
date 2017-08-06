@@ -17,3 +17,15 @@ type Database interface {
 	MarkAsFailed(taskName string, instanceID string) error
 	SetPullTime(t time.Time) error
 }
+
+// Task defines what be registered when creating this job scheduler
+// This comes packages with "echo" (for testing) and "bash" tasks
+type Task interface {
+	GetName() string
+
+	OnFail(runError error) error
+	OnSuccess(response interface{}) error
+	OnAbort() error
+
+	Run(parametersAsBytes []byte) (interface{}, error)
+}
