@@ -6,6 +6,6 @@ const (
 
 	Env_SecretKey = "SECRET_KEY"
 
-	gRPC_Server_Port = 9080
-	HTTP_Server_Port = 8080
+	gRPC_Server_Port = 9081
+	HTTP_Server_Port = 8081
 )

@@ -7,22 +7,23 @@ import (
 
 	"github.com/hippoai/goutil"
 	pb "github.com/hippoai/later/_proto"
-	"github.com/hippoai/later/dbs/boltdb_single"
 	"github.com/hippoai/later/tasks/echo"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
 
+var grpc_address = "localhost:9081"
+
 func get_instances() {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer conn.Close()
 
-	client := pb.NewMutationsClient(conn)
+	client := pb.NewLaterClient(conn)
 
 	out, err := client.GetInstances(context.Background(), &pb.GetInstancesInput{
 		Start: time.Now().UTC().Add(-10 * time.Minute).Format(time.RFC3339),
@@ -39,13 +40,13 @@ func get_instances() {
 func add_instance() {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer conn.Close()
 
-	client := pb.NewMutationsClient(conn)
+	client := pb.NewLaterClient(conn)
 
 	msg := "Hello world!"
 	parameters := &echo.Parameters{
@@ -67,25 +68,20 @@ func add_instance() {
 
 }
 
-func abort_instance(instancesIDs ...string) {
+func abort_instance(instanceID string) {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer conn.Close()
 
-	client := pb.NewMutationsClient(conn)
+	client := pb.NewLaterClient(conn)
 
-	parameters := &boltdb_single.Input{
-		InstancesIDs: instancesIDs,
-	}
-	b, _ := json.Marshal(parameters)
-
-	out, err := client.AbortInstances(context.Background(), &pb.AbortInstancesInput{
+	out, err := client.AbortInstance(context.Background(), &pb.AbortInstanceInput{
 		TaskName:   "echo",
-		Parameters: b,
+		InstanceId: instanceID,
 	})
 
 	if err != nil {
@@ -99,13 +95,13 @@ func abort_instance(instancesIDs ...string) {
 func stats() {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer conn.Close()
 
-	client := pb.NewMutationsClient(conn)
+	client := pb.NewLaterClient(conn)
 
 	out, err := client.Stats(context.Background(), &pb.StatsInput{})
 

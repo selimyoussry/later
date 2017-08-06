@@ -4,76 +4,102 @@ import (
 	"time"
 
 	"github.com/hippoai/goutil"
+	"github.com/hippoai/later/structures"
 )
 
-// Run runs the instance at the specific time unless aborted before
-// and then closes the Abort channel
-func (mi *ManagedInstance) Run(machine *Machine) {
-	defer close(mi.AbortChannel)
+// RunInstance runs an instance locally
+func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instance) {
 
-	wait := mi.Instance.ExecutionTime.Sub(time.Now())
+	// Check if the instance is already in the local memory
+	_, exists := machine.Instances.Load(instance.ID)
+	if exists {
+		return
+	}
+
+	// Wrap the instance in a "local instance" that has an abort channel
+	task := machine.Tasks[instance.TaskName]
+	localInstance := NewLocalInstance(instance, task)
+	machine.Instances.Store(instance.ID, localInstance)
+
+	// At the end of the run, close the channel and delete the instance it from the local store
+	defer func() {
+		close(localInstance.AbortChannel)
+		machine.Instances.Delete(instance.ID)
+	}()
+
+	// Create a timer to trigger the instance at the right time
+	wait := instance.ExecutionTime.Sub(time.Now())
 	timer := time.NewTimer(wait)
 
+	// Execute or Abort the instance
 	select {
 
-	// 1 - The task is due, execute it
+	// Execute the instance
 	case <-timer.C:
 
 		// Run the task
-		response, err := mi.Task.Run(mi.Instance.Parameters)
+		response, err := task.Run(instance.Parameters)
 
-		// If there is an error on run, call the OnFail callback
+		// If there is an error on run
 		if err != nil {
+
+			// Log the error
 			goutil.Log("Error on running instance %s - Got %s",
-				mi.Instance.ID,
+				instance.ID,
 				goutil.Stringify(err),
 			)
 
-			// Run OnFail
-			err = mi.Task.OnFail(err)
+			// Run OnFail callback for this task
+			err = task.OnFail(err)
 			if err != nil {
 				goutil.Log("Error on failing %s - Got %s",
-					mi.Instance.ID,
+					instance.ID,
 					goutil.Stringify(err),
 				)
 			}
 
-			// Save the failed in the database
-			err = machine.Database.MarkAsFailed(mi.Task.GetName(), mi.Instance.ID)
+			// Save the failed instance in the database
 			if err != nil {
 				goutil.Log("Error on saving failed to db %s",
 					goutil.Stringify(err),
 				)
 			}
 
+			// Exit the function
 			return
+
 		}
 
-		// Otherwise run OnSuccess
-		err = mi.Task.OnSuccess(response)
+		// No error on run, this instance has successfully completed
+
+		// Run OnSuccess callback
+		err = task.OnSuccess(response)
 		if err != nil {
 			goutil.Log("Error on success %s - Got %s",
-				mi.Instance.ID,
+				instance.ID,
 				goutil.Stringify(err),
 			)
 		}
 
 		// Save the success in the database
-		err = machine.Database.MarkAsSuccessful(mi.Task.GetName(), mi.Instance.ID)
+		err = machine.Database.MarkAsSuccessful(task.GetName(), instance.ID)
 		if err != nil {
 			goutil.Log("Error on saving success to db %s",
 				goutil.Stringify(err),
 			)
 		}
 
-		// 2 - It was aborted
-	case <-mi.AbortChannel:
+		// Abort this instance
+		// This can only happen if the "AbortInstance" API has been called
+		// This just prevents the instance from running locally
+		// It is removed from the database by the "AbortInstance" function
+	case <-localInstance.AbortChannel:
 		goutil.Log("Aborting instance %s at %s | Task %s scheduled for %s with parameters %s",
-			mi.Instance.ID,
+			instance.ID,
 			time.Now().String(),
-			mi.Task.GetName(),
-			mi.Instance.ExecutionTime.String(),
-			string(mi.Instance.Parameters),
+			task.GetName(),
+			instance.ExecutionTime.String(),
+			string(instance.Parameters),
 		)
 
 	}

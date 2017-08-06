@@ -1,31 +1,70 @@
 # Execute your task at specified times, and add custom behavior
 
+This package aims at becoming a simple replacement for Cron. It works on a single node right now but will eventually be distributed. It uses go-routines (which are very lightweight) and only pulls in memory jobs that will run in the following hours or so (this is configurable), so it should be able to scale to millions of scheduled jobs with a single node.
 
-## Task
-
-A `Task` is a [Golang interface](https://gobyexample.com/interfaces) implements the methods:
-* `GetName() string` returns the task name.
-* `OnCreate(t time.Time, parameters interface{}) error` creates an instance of this task that will run at time t, and is given parameters `parameters` in the form of a standard `interface{}`. In the task definition the proper Golang type of `parameters` should be specified so that the `OnCreate` function can do a type assertion and we're all happy. This parameters will be used to store all the necessary information about this task on runtime, and also for the callbacks. It should persist it to the database.
-* `OnFail() error` defines the behavior when the task could not be run. By default it will print to log. It should persist it to the database.
-* `OnSuccess() error` defines the behavior when the task was successfully implemented. It should persist it to the database.
-* `OnAbort() error` defines the behavior when the task was aborted. It should persist it to the database.
+This was built as a job scheduler, not as a job runner, i.e. don't try to run long-running processes with this. Rather, create an API with your workers, and use something like a PUB-SUB system to manage everything. [To Do: Add details about that].
 
 
-## Instance
-
-An instance is an instance of a specific task. It implements:
-* `GetID() string` returns the unique ID automatically given to this instance upon creation.
-* `GetTaskName() string` which returns the given task name.
-* `GetExecutionTime() time.Time` which returns the execution time for this instance.
-* `GetParameters() interface{}` which returns the parameters stored when the instance was created.
+## Concepts
 
 
-## Persistence
+### Task
 
-We store the tasks instances in a database. We don't want to restrict you to any database, we just require your database to implement the following methods:
-* `GetInstances(start, end time.Time) ([]Instance, error)` which returns all the instances between a start and end time.
-* `PullInstances(start, end time.Time) ([]Instance, error)` which returns all the instances between a start and end time, should mark them as pulled from the database, and puts them in the machine go-routines.
-* `CreateInstance(name string, parameters interface{}) error` creates a task given passed parameters.
-* `AbortInstance(name string, parameters interface{}) error` to abort a specific task instance.
-* `GetLastPullTime() (time.Time, error)` returns the last time we pulled instances out of this database
-* `SetPullTime(t time.Time) error` sets the pull to the given time.
+A `Task` is a piece of functionality that can be executed at a specified time once the server is running. It is an interface, so the users are encouraged to write their own tasks implementing:
+
+```go
+type Task interface {
+	GetName() string
+
+	OnFail(runError error) error
+	OnSuccess(response interface{}) error
+	OnAbort() error
+
+	Run(parametersAsBytes []byte) (interface{}, error)
+}
+```
+
+This ships with the "bash" task that executes bash commands. Check `/tasks/bash` for more information.
+
+
+### Database
+
+A `Database` is the storage we will use to persist the scheduled jobs. It is an interface too. You can either the `BoltDB` driver that ships with this package, or write your own driver to another database. It must implement:
+
+```go
+type Database interface {
+	AbortInstance(taskName string, instanceID string) error
+	CreateInstance(taskname string, executionTime time.Time, parameters []byte) (string, error)
+	GetInstances(start, end time.Time) ([]*structures.Instance, error)
+	GetLastPullTime() (*time.Time, error)
+	MarkAsSuccessful(taskName string, instanceID string) error
+	MarkAsFailed(taskName string, instanceID string) error
+	SetPullTime(t time.Time) error
+}
+```
+
+
+## How this works
+
+We create a `Machine` that is responsible for the coordination of all the jobs. It:
+* Maintains the database state of Aborted, Pending, Successful, Failed tasks
+* Makes sure the jobs are executed at the right times.
+
+
+### How to run
+
+```go
+
+```
+
+# To Do
+
+- [x] Clean up code and isolate functionalities and pipelines
+- [x] Separate BoltDB database as standalone, open over gRPC
+- [ ] Add BoltDB stats views and HTTP endpoint
+- [ ] Secure the transactions
+- [ ] Make it cluster-able
+- [ ] Tutorial in the Readme
+- [ ] Dockerize everything
+- [ ] Add simple UI
+- [ ] Add logs

@@ -21,8 +21,7 @@ func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesI
 		return nil, err
 	}
 
-	// Get the instances from the database during this timeframe
-	instances, err := server.Machine.Database.GetInstances(start, end)
+	instances, err := server.Machine.GetInstances(start, end)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +40,6 @@ func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesI
 	// The protobuf output
 	out := &pb.GetInstancesOutput{
 		Instances: proto_instances,
-		Error:     nil,
 	}
 
 	return out, nil
