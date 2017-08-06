@@ -4,7 +4,7 @@ import "fmt"
 
 const (
 	Env_Path     = "BOLTDB_PATH"
-	Default_Path = "./"
+	Default_Path = "./data"
 	DB_File_Name = "later.bolt.db"
 
 	BUCKET_ABORTED    = "__Aborted"

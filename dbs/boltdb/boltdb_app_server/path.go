@@ -7,12 +7,14 @@ import (
 )
 
 func GetPath() string {
-
 	parsed, err := env.Parse(Env_Path)
 	if err != nil {
-		return path.Join(Default_Path, DB_File_Name)
+		return Default_Path
 	}
 
-	return path.Join(parsed[Env_Path], DB_File_Name)
+	return parsed[Env_Path]
+}
 
+func GetFilePath() string {
+	return path.Join(GetPath(), DB_File_Name)
 }

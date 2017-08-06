@@ -27,7 +27,9 @@ func (machine *Machine) CreateInstance(taskName string, executionTime time.Time,
 	// Run it locally if it's in the current timeframe
 	timeframeEnd := time.Now().Add(machine.Parameters.TimeAhead)
 	if executionTime.Before(timeframeEnd) {
-		machine.RunInstanceIfNotAlreadyThere(instance)
+		go func() {
+			machine.RunInstanceIfNotAlreadyThere(instance)
+		}()
 	}
 
 	return instance, nil

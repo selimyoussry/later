@@ -12,10 +12,12 @@ import (
 	"google.golang.org/grpc"
 )
 
+var grpc_address = "localhost:9081"
+
 func get_instances() {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -38,7 +40,7 @@ func get_instances() {
 func add_instance() {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -69,7 +71,7 @@ func add_instance() {
 func abort_instance(instanceID string) {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -93,7 +95,7 @@ func abort_instance(instanceID string) {
 func stats() {
 
 	// Create gRPC connection
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}

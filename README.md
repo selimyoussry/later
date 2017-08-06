@@ -59,8 +59,8 @@ We create a `Machine` that is responsible for the coordination of all the jobs. 
 
 # To Do
 
-- [ ] Clean up code and isolate functionalities and pipelines
-- [ ] Separate BoltDB database as standalone, open over gRPC
+- [x] Clean up code and isolate functionalities and pipelines
+- [x] Separate BoltDB database as standalone, open over gRPC
 - [ ] Add BoltDB stats views and HTTP endpoint
 - [ ] Secure the transactions
 - [ ] Make it cluster-able
