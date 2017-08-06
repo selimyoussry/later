@@ -15,7 +15,7 @@ $WORKON_HOME/grpc/bin/python -m grpc_tools.protoc \
   -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
   --python_out=. \
   --grpc_python_out=. \
-  ./later.proto
+  ./definition.proto
 
 # Go
 protoc \
@@ -23,7 +23,7 @@ protoc \
   -I $GOPATH/src \
   -I /usr/local/include \
   -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
-  ./later.proto \
+  ./definition.proto \
   --go_out=plugins=grpc:$GOPATH/src
 go install
 
@@ -34,7 +34,7 @@ protoc \
   -I /usr/local/include \
   -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
   --grpc-gateway_out=logtostderr=true:. \
-  ./later.proto
+  ./definition.proto
 go install
 
 # Swagger definition
@@ -44,4 +44,4 @@ protoc \
   -I /usr/local/include \
   -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
   --swagger_out=logtostderr=true:. \
-  ./later.proto
+  ./definition.proto
