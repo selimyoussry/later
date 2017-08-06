@@ -5,20 +5,15 @@ import (
 
 	"github.com/hippoai/goutil"
 	"github.com/hippoai/later"
-	"github.com/hippoai/later/dbs/boltdb_single"
+	"github.com/hippoai/later/dbs/boltdb"
 	"github.com/hippoai/later/tasks/bash"
 	"github.com/hippoai/later/tasks/echo"
 )
 
 func main() {
 
-	// List all tasks names
-	tasks := []string{
-		"echo", "bash",
-	}
-
 	// Use boltdb_single database, which runs on the same server as this node
-	db, err := boltdb_single.NewDatabase(tasks)
+	db, err := boltdb.NewDatabaseFromEnv()
 	if err != nil {
 		log.Fatal(err)
 	}

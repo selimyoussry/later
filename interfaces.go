@@ -10,7 +10,8 @@ import (
 // note that the database might have extra functionality, these are minimum compatibility requirements
 type Database interface {
 	AbortInstance(taskName string, instanceID string) error
-	CreateInstance(taskname string, executionTime time.Time, parameters []byte) (string, error)
+	Close() error
+	CreateInstance(taskName string, executionTime time.Time, parameters []byte) (string, error)
 	GetInstances(start, end time.Time) ([]*structures.Instance, error)
 	GetLastPullTime() (*time.Time, error)
 	MarkAsSuccessful(taskName string, instanceID string) error
