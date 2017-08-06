@@ -146,6 +146,7 @@ func stats() {
 func main() {
 
 	// add_instance()
+	// get_instances()
 	get_successful()
 	// abort_instance("2017-08-05T19:28:38-04:00.4596768c-9a1d-4640-a54e-58b1ce9778ce")
 	stats()

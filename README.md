@@ -68,3 +68,4 @@ We create a `Machine` that is responsible for the coordination of all the jobs. 
 - [ ] Dockerize everything
 - [ ] Add simple UI
 - [ ] Add logs
+- [ ] Add backup to BoltDB
