@@ -29,3 +29,14 @@ We store the tasks instances in a database. We don't want to restrict you to any
 * `AbortInstance(name string, parameters interface{}) error` to abort a specific task instance.
 * `GetLastPullTime() (time.Time, error)` returns the last time we pulled instances out of this database
 * `SetPullTime(t time.Time) error` sets the pull to the given time.
+
+
+# To Do
+
+- [ ] Clean up code and isolate functionalities and pipelines
+- [ ] Separate BoltDB database as standalone, open over gRPC
+- [ ] Add BoltDB stats views and HTTP endpoint
+- [ ] Secure the transactions
+- [ ] Make it cluster-able
+- [ ] Tutorial in the Readme
+- [ ] Dockerize everything
