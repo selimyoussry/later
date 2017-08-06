@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='definition.proto',
   package='hippoai.later',
   syntax='proto3',
-  serialized_pb=_b('\n\x10\x64\x65\x66inition.proto\x12\rhippoai.later\x1a\x1cgoogle/api/annotations.proto\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\x0c\"T\n\x13\x43reateInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\x0c\"+\n\x14\x43reateInstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"<\n\x12\x41\x62ortInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x15\n\x13\x41\x62ortInstanceOutput\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"@\n\x12GetInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\"\x0c\n\nStatsInput\"@\n\x0bStatsOutput\x12\r\n\x05token\x18\x01 \x01(\t\x12\x13\n\x0bn_in_memory\x18\x02 \x01(\x03\x12\r\n\x05tasks\x18\x03 \x03(\t2\xb6\x03\n\x05Later\x12v\n\x0e\x43reateInstance\x12\".hippoai.later.CreateInstanceInput\x1a#.hippoai.later.CreateInstanceOutput\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/create_instance:\x01*\x12r\n\rAbortInstance\x12!.hippoai.later.AbortInstanceInput\x1a\".hippoai.later.AbortInstanceOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/abort_instance:\x01*\x12n\n\x0cGetInstances\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/get_instances:\x01*\x12Q\n\x05Stats\x12\x19.hippoai.later.StatsInput\x1a\x1a.hippoai.later.StatsOutput\"\x11\x82\xd3\xe4\x93\x02\x0b\"\x06/stats:\x01*B!Z\x1fgithub.com/hippoai/later/_protob\x06proto3')
+  serialized_pb=_b('\n\x10\x64\x65\x66inition.proto\x12\rhippoai.later\x1a\x1cgoogle/api/annotations.proto\"U\n\x08Instance\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttask_name\x18\x02 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x03 \x01(\t\x12\x12\n\nparameters\x18\x04 \x01(\x0c\"T\n\x13\x43reateInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x16\n\x0e\x65xecution_time\x18\x02 \x01(\t\x12\x12\n\nparameters\x18\x03 \x01(\x0c\"+\n\x14\x43reateInstanceOutput\x12\x13\n\x0binstance_id\x18\x01 \x01(\t\"<\n\x12\x41\x62ortInstanceInput\x12\x11\n\ttask_name\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\"\x15\n\x13\x41\x62ortInstanceOutput\"/\n\x11GetInstancesInput\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"@\n\x12GetInstancesOutput\x12*\n\tinstances\x18\x01 \x03(\x0b\x32\x17.hippoai.later.Instance\"\x0c\n\nStatsInput\"@\n\x0bStatsOutput\x12\r\n\x05token\x18\x01 \x01(\t\x12\x13\n\x0bn_in_memory\x18\x02 \x01(\x03\x12\r\n\x05tasks\x18\x03 \x03(\t2\xfe\x05\n\x05Later\x12v\n\x0e\x43reateInstance\x12\".hippoai.later.CreateInstanceInput\x1a#.hippoai.later.CreateInstanceOutput\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/create_instance:\x01*\x12r\n\rAbortInstance\x12!.hippoai.later.AbortInstanceInput\x1a\".hippoai.later.AbortInstanceOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/abort_instance:\x01*\x12n\n\x0cGetInstances\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/get_instances:\x01*\x12p\n\rGetSuccessful\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/get_successful:\x01*\x12h\n\tGetFailed\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x16\x82\xd3\xe4\x93\x02\x10\"\x0b/get_failed:\x01*\x12j\n\nGetAborted\x12 .hippoai.later.GetInstancesInput\x1a!.hippoai.later.GetInstancesOutput\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/get_aborted:\x01*\x12Q\n\x05Stats\x12\x19.hippoai.later.StatsInput\x1a\x1a.hippoai.later.StatsOutput\"\x11\x82\xd3\xe4\x93\x02\x0b\"\x06/stats:\x01*B!Z\x1fgithub.com/hippoai/later/_protob\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -465,6 +465,21 @@ try:
           request_serializer=GetInstancesInput.SerializeToString,
           response_deserializer=GetInstancesOutput.FromString,
           )
+      self.GetSuccessful = channel.unary_unary(
+          '/hippoai.later.Later/GetSuccessful',
+          request_serializer=GetInstancesInput.SerializeToString,
+          response_deserializer=GetInstancesOutput.FromString,
+          )
+      self.GetFailed = channel.unary_unary(
+          '/hippoai.later.Later/GetFailed',
+          request_serializer=GetInstancesInput.SerializeToString,
+          response_deserializer=GetInstancesOutput.FromString,
+          )
+      self.GetAborted = channel.unary_unary(
+          '/hippoai.later.Later/GetAborted',
+          request_serializer=GetInstancesInput.SerializeToString,
+          response_deserializer=GetInstancesOutput.FromString,
+          )
       self.Stats = channel.unary_unary(
           '/hippoai.later.Later/Stats',
           request_serializer=StatsInput.SerializeToString,
@@ -485,6 +500,21 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def GetInstances(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetSuccessful(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetFailed(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetAborted(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -512,6 +542,21 @@ try:
             request_deserializer=GetInstancesInput.FromString,
             response_serializer=GetInstancesOutput.SerializeToString,
         ),
+        'GetSuccessful': grpc.unary_unary_rpc_method_handler(
+            servicer.GetSuccessful,
+            request_deserializer=GetInstancesInput.FromString,
+            response_serializer=GetInstancesOutput.SerializeToString,
+        ),
+        'GetFailed': grpc.unary_unary_rpc_method_handler(
+            servicer.GetFailed,
+            request_deserializer=GetInstancesInput.FromString,
+            response_serializer=GetInstancesOutput.SerializeToString,
+        ),
+        'GetAborted': grpc.unary_unary_rpc_method_handler(
+            servicer.GetAborted,
+            request_deserializer=GetInstancesInput.FromString,
+            response_serializer=GetInstancesOutput.SerializeToString,
+        ),
         'Stats': grpc.unary_unary_rpc_method_handler(
             servicer.Stats,
             request_deserializer=StatsInput.FromString,
@@ -535,6 +580,12 @@ try:
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def GetInstances(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetSuccessful(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetFailed(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetAborted(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def Stats(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
@@ -554,6 +605,15 @@ try:
     def GetInstances(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     GetInstances.future = None
+    def GetSuccessful(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetSuccessful.future = None
+    def GetFailed(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetFailed.future = None
+    def GetAborted(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetAborted.future = None
     def Stats(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     Stats.future = None
@@ -568,19 +628,28 @@ try:
     request_deserializers = {
       ('hippoai.later.Later', 'AbortInstance'): AbortInstanceInput.FromString,
       ('hippoai.later.Later', 'CreateInstance'): CreateInstanceInput.FromString,
+      ('hippoai.later.Later', 'GetAborted'): GetInstancesInput.FromString,
+      ('hippoai.later.Later', 'GetFailed'): GetInstancesInput.FromString,
       ('hippoai.later.Later', 'GetInstances'): GetInstancesInput.FromString,
+      ('hippoai.later.Later', 'GetSuccessful'): GetInstancesInput.FromString,
       ('hippoai.later.Later', 'Stats'): StatsInput.FromString,
     }
     response_serializers = {
       ('hippoai.later.Later', 'AbortInstance'): AbortInstanceOutput.SerializeToString,
       ('hippoai.later.Later', 'CreateInstance'): CreateInstanceOutput.SerializeToString,
+      ('hippoai.later.Later', 'GetAborted'): GetInstancesOutput.SerializeToString,
+      ('hippoai.later.Later', 'GetFailed'): GetInstancesOutput.SerializeToString,
       ('hippoai.later.Later', 'GetInstances'): GetInstancesOutput.SerializeToString,
+      ('hippoai.later.Later', 'GetSuccessful'): GetInstancesOutput.SerializeToString,
       ('hippoai.later.Later', 'Stats'): StatsOutput.SerializeToString,
     }
     method_implementations = {
       ('hippoai.later.Later', 'AbortInstance'): face_utilities.unary_unary_inline(servicer.AbortInstance),
       ('hippoai.later.Later', 'CreateInstance'): face_utilities.unary_unary_inline(servicer.CreateInstance),
+      ('hippoai.later.Later', 'GetAborted'): face_utilities.unary_unary_inline(servicer.GetAborted),
+      ('hippoai.later.Later', 'GetFailed'): face_utilities.unary_unary_inline(servicer.GetFailed),
       ('hippoai.later.Later', 'GetInstances'): face_utilities.unary_unary_inline(servicer.GetInstances),
+      ('hippoai.later.Later', 'GetSuccessful'): face_utilities.unary_unary_inline(servicer.GetSuccessful),
       ('hippoai.later.Later', 'Stats'): face_utilities.unary_unary_inline(servicer.Stats),
     }
     server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
@@ -596,19 +665,28 @@ try:
     request_serializers = {
       ('hippoai.later.Later', 'AbortInstance'): AbortInstanceInput.SerializeToString,
       ('hippoai.later.Later', 'CreateInstance'): CreateInstanceInput.SerializeToString,
+      ('hippoai.later.Later', 'GetAborted'): GetInstancesInput.SerializeToString,
+      ('hippoai.later.Later', 'GetFailed'): GetInstancesInput.SerializeToString,
       ('hippoai.later.Later', 'GetInstances'): GetInstancesInput.SerializeToString,
+      ('hippoai.later.Later', 'GetSuccessful'): GetInstancesInput.SerializeToString,
       ('hippoai.later.Later', 'Stats'): StatsInput.SerializeToString,
     }
     response_deserializers = {
       ('hippoai.later.Later', 'AbortInstance'): AbortInstanceOutput.FromString,
       ('hippoai.later.Later', 'CreateInstance'): CreateInstanceOutput.FromString,
+      ('hippoai.later.Later', 'GetAborted'): GetInstancesOutput.FromString,
+      ('hippoai.later.Later', 'GetFailed'): GetInstancesOutput.FromString,
       ('hippoai.later.Later', 'GetInstances'): GetInstancesOutput.FromString,
+      ('hippoai.later.Later', 'GetSuccessful'): GetInstancesOutput.FromString,
       ('hippoai.later.Later', 'Stats'): StatsOutput.FromString,
     }
     cardinalities = {
       'AbortInstance': cardinality.Cardinality.UNARY_UNARY,
       'CreateInstance': cardinality.Cardinality.UNARY_UNARY,
+      'GetAborted': cardinality.Cardinality.UNARY_UNARY,
+      'GetFailed': cardinality.Cardinality.UNARY_UNARY,
       'GetInstances': cardinality.Cardinality.UNARY_UNARY,
+      'GetSuccessful': cardinality.Cardinality.UNARY_UNARY,
       'Stats': cardinality.Cardinality.UNARY_UNARY,
     }
     stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)

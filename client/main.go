@@ -41,6 +41,33 @@ func get_instances() {
 
 }
 
+func get_successful() {
+
+	// Create gRPC connection
+	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+
+	client := pb.NewLaterClient(conn)
+
+	out, err := client.GetSuccessful(context.Background(), &pb.GetInstancesInput{
+		Start: "2017-08-06T05:15:08Z",
+		End:   time.Now().UTC().Add(10 * time.Minute).Format(time.RFC3339),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	instances := out.GetInstances()
+
+	for _, instance := range instances {
+		log.Println(instance.GetId(), instance.GetExecutionTime(), instance.GetTaskName(), string(instance.GetParameters()))
+	}
+
+}
+
 func add_instance() {
 
 	// Create gRPC connection
@@ -118,8 +145,8 @@ func stats() {
 }
 func main() {
 
-	add_instance()
-	get_instances()
+	// add_instance()
+	get_successful()
 	// abort_instance("2017-08-05T19:28:38-04:00.4596768c-9a1d-4640-a54e-58b1ce9778ce")
 	stats()
 

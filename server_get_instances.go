@@ -7,8 +7,8 @@ import (
 	"golang.org/x/net/context"
 )
 
-// GetInstances returns a bunch of instances between a start and end time
-func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+// getter returns a bunch of instances between a start and end time
+func (server *Server) getter(context context.Context, in *pb.GetInstancesInput, status string) (*pb.GetInstancesOutput, error) {
 
 	// Parse start and end time
 	start, err := time.Parse(time.RFC3339, in.GetStart())
@@ -21,7 +21,7 @@ func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesI
 		return nil, err
 	}
 
-	instances, err := server.Machine.GetInstances(start, end)
+	instances, err := server.Machine.getter(start, end, status)
 	if err != nil {
 		return nil, err
 	}
@@ -44,4 +44,24 @@ func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesI
 
 	return out, nil
 
+}
+
+// GetInstances returns a bunch of instances between a start and end time
+func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.getter(context, in, STATUS_PENDING)
+}
+
+// GetFailed returns a bunch of instances between a start and end time
+func (server *Server) GetFailed(context context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.getter(context, in, STATUS_FAILED)
+}
+
+// GetAborted returns a bunch of instances between a start and end time
+func (server *Server) GetAborted(context context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.getter(context, in, STATUS_ABORTED)
+}
+
+// GetSuccessful returns a bunch of instances between a start and end time
+func (server *Server) GetSuccessful(context context.Context, in *pb.GetInstancesInput) (*pb.GetInstancesOutput, error) {
+	return server.getter(context, in, STATUS_SUCCESSFUL)
 }

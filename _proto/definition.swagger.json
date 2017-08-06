@@ -67,9 +67,87 @@
         ]
       }
     },
+    "/get_aborted": {
+      "post": {
+        "operationId": "GetAborted",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "Later"
+        ]
+      }
+    },
+    "/get_failed": {
+      "post": {
+        "operationId": "GetFailed",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "Later"
+        ]
+      }
+    },
     "/get_instances": {
       "post": {
         "operationId": "GetInstances",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/laterGetInstancesInput"
+            }
+          }
+        ],
+        "tags": [
+          "Later"
+        ]
+      }
+    },
+    "/get_successful": {
+      "post": {
+        "operationId": "GetSuccessful",
         "responses": {
           "200": {
             "description": "",

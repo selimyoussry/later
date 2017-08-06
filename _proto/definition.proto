@@ -25,6 +25,24 @@ service Later {
       body: "*"
     };
   };
+  rpc GetSuccessful(GetInstancesInput) returns (GetInstancesOutput) {
+    option (google.api.http) = {
+      post: "/get_successful"
+      body: "*"
+    };
+  };
+  rpc GetFailed(GetInstancesInput) returns (GetInstancesOutput) {
+    option (google.api.http) = {
+      post: "/get_failed"
+      body: "*"
+    };
+  };
+  rpc GetAborted(GetInstancesInput) returns (GetInstancesOutput) {
+    option (google.api.http) = {
+      post: "/get_aborted"
+      body: "*"
+    };
+  };
   rpc Stats(StatsInput) returns (StatsOutput) {
     option (google.api.http) = {
       post: "/stats"

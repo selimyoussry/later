@@ -27,9 +27,10 @@ func (machine *Machine) LoopCore() error {
 	machine.LatestPullTime = &now
 
 	// 1 - We get all the pending instances for the current timeframe
-	instances, err := machine.GetInstances(
+	instances, err := machine.getter(
 		machine.LatestPullTime.Add(-1*time.Minute),
 		machine.LatestPullTime.Add(machine.Parameters.TimeAhead),
+		STATUS_PENDING,
 	)
 	if err != nil {
 		return err

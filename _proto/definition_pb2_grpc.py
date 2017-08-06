@@ -27,6 +27,21 @@ class LaterStub(object):
         request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
         response_deserializer=definition__pb2.GetInstancesOutput.FromString,
         )
+    self.GetSuccessful = channel.unary_unary(
+        '/hippoai.later.Later/GetSuccessful',
+        request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
+        response_deserializer=definition__pb2.GetInstancesOutput.FromString,
+        )
+    self.GetFailed = channel.unary_unary(
+        '/hippoai.later.Later/GetFailed',
+        request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
+        response_deserializer=definition__pb2.GetInstancesOutput.FromString,
+        )
+    self.GetAborted = channel.unary_unary(
+        '/hippoai.later.Later/GetAborted',
+        request_serializer=definition__pb2.GetInstancesInput.SerializeToString,
+        response_deserializer=definition__pb2.GetInstancesOutput.FromString,
+        )
     self.Stats = channel.unary_unary(
         '/hippoai.later.Later/Stats',
         request_serializer=definition__pb2.StatsInput.SerializeToString,
@@ -51,6 +66,21 @@ class LaterServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetSuccessful(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetFailed(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetAborted(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def Stats(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -71,6 +101,21 @@ def add_LaterServicer_to_server(servicer, server):
       ),
       'GetInstances': grpc.unary_unary_rpc_method_handler(
           servicer.GetInstances,
+          request_deserializer=definition__pb2.GetInstancesInput.FromString,
+          response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
+      ),
+      'GetSuccessful': grpc.unary_unary_rpc_method_handler(
+          servicer.GetSuccessful,
+          request_deserializer=definition__pb2.GetInstancesInput.FromString,
+          response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
+      ),
+      'GetFailed': grpc.unary_unary_rpc_method_handler(
+          servicer.GetFailed,
+          request_deserializer=definition__pb2.GetInstancesInput.FromString,
+          response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
+      ),
+      'GetAborted': grpc.unary_unary_rpc_method_handler(
+          servicer.GetAborted,
           request_deserializer=definition__pb2.GetInstancesInput.FromString,
           response_serializer=definition__pb2.GetInstancesOutput.SerializeToString,
       ),
