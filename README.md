@@ -40,3 +40,4 @@ We store the tasks instances in a database. We don't want to restrict you to any
 - [ ] Make it cluster-able
 - [ ] Tutorial in the Readme
 - [ ] Dockerize everything
+- [ ] Add simple UI

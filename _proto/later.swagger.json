@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "later_json.proto",
+    "title": "later.proto",
     "version": "version not set"
   },
   "schemes": [
@@ -15,14 +15,14 @@
     "application/json"
   ],
   "paths": {
-    "/abort_instances": {
+    "/abort_instance": {
       "post": {
-        "operationId": "AbortInstances",
+        "operationId": "AbortInstance",
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/laterAbortInstancesOutput"
+              "$ref": "#/definitions/laterAbortInstanceOutput"
             }
           }
         },
@@ -32,12 +32,12 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/laterAbortInstancesInput"
+              "$ref": "#/definitions/laterAbortInstanceInput"
             }
           }
         ],
         "tags": [
-          "Mutations"
+          "Later"
         ]
       }
     },
@@ -63,7 +63,7 @@
           }
         ],
         "tags": [
-          "Mutations"
+          "Later"
         ]
       }
     },
@@ -89,7 +89,7 @@
           }
         ],
         "tags": [
-          "Mutations"
+          "Later"
         ]
       }
     },
@@ -115,47 +115,29 @@
           }
         ],
         "tags": [
-          "Mutations"
+          "Later"
         ]
       }
     }
   },
   "definitions": {
-    "laterAbortInstancesInput": {
+    "laterAbortInstanceInput": {
       "type": "object",
       "properties": {
-        "token": {
-          "type": "string"
-        },
         "task_name": {
           "type": "string"
         },
-        "parameters": {
-          "type": "string",
-          "format": "byte"
+        "instance_id": {
+          "type": "string"
         }
       }
     },
-    "laterAbortInstancesOutput": {
-      "type": "object",
-      "properties": {
-        "instances_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "error": {
-          "$ref": "#/definitions/laterError"
-        }
-      }
+    "laterAbortInstanceOutput": {
+      "type": "object"
     },
     "laterCreateInstanceInput": {
       "type": "object",
       "properties": {
-        "token": {
-          "type": "string"
-        },
         "task_name": {
           "type": "string"
         },
@@ -173,26 +155,12 @@
       "properties": {
         "instance_id": {
           "type": "string"
-        },
-        "error": {
-          "$ref": "#/definitions/laterError"
-        }
-      }
-    },
-    "laterError": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
         }
       }
     },
     "laterGetInstancesInput": {
       "type": "object",
       "properties": {
-        "token": {
-          "type": "string"
-        },
         "start": {
           "type": "string"
         },
@@ -209,9 +177,6 @@
           "items": {
             "$ref": "#/definitions/laterInstance"
           }
-        },
-        "erro": {
-          "$ref": "#/definitions/laterError"
         }
       }
     },

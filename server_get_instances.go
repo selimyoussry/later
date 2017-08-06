@@ -41,7 +41,6 @@ func (server *Server) GetInstances(context context.Context, in *pb.GetInstancesI
 	// The protobuf output
 	out := &pb.GetInstancesOutput{
 		Instances: proto_instances,
-		Error:     nil,
 	}
 
 	return out, nil

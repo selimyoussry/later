@@ -4,11 +4,33 @@ package hippoai.later;
 
 option go_package = "github.com/hippoai/later/_proto";
 
-service Mutations {
-  rpc CreateInstance(CreateInstanceInput) returns (CreateInstanceOutput) {};
-  rpc AbortInstances(AbortInstancesInput) returns (AbortInstancesOutput) {};
-  rpc GetInstances(GetInstancesInput) returns (GetInstancesOutput) {};
-  rpc Stats(StatsInput) returns (StatsOutput) {};
+import "google/api/annotations.proto";
+
+service Later {
+  rpc CreateInstance(CreateInstanceInput) returns (CreateInstanceOutput) {
+    option (google.api.http) = {
+      post: "/create_instance"
+      body: "*"
+    };
+  };
+  rpc AbortInstance(AbortInstanceInput) returns (AbortInstanceOutput) {
+    option (google.api.http) = {
+      post: "/abort_instance"
+      body: "*"
+    };
+  };
+  rpc GetInstances(GetInstancesInput) returns (GetInstancesOutput) {
+    option (google.api.http) = {
+      post: "/get_instances"
+      body: "*"
+    };
+  };
+  rpc Stats(StatsInput) returns (StatsOutput) {
+    option (google.api.http) = {
+      post: "/stats"
+      body: "*"
+    };
+  };
 }
 
 message Instance {
@@ -16,10 +38,6 @@ message Instance {
   string task_name = 2;
   string execution_time = 3;
   bytes parameters = 4;
-}
-
-message Error {
-  string message = 1;
 }
 
 message CreateInstanceInput {
@@ -30,17 +48,14 @@ message CreateInstanceInput {
 
 message CreateInstanceOutput {
   string instance_id = 1;
-  Error error = 2;
 }
 
-message AbortInstancesInput {
+message AbortInstanceInput {
   string task_name = 1;
-  bytes parameters = 2;
+  string instance_id = 2;
 }
 
-message AbortInstancesOutput {
-  repeated string instances_ids = 1;
-  Error error = 2;
+message AbortInstanceOutput {
 }
 
 message GetInstancesInput {
@@ -50,7 +65,6 @@ message GetInstancesInput {
 
 message GetInstancesOutput {
   repeated Instance instances = 1;
-  Error error = 2;
 }
 
 message StatsInput {

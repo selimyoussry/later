@@ -34,13 +34,12 @@ func (server *Server) CreateInstance(context context.Context, in *pb.CreateInsta
 			TaskName:      in.GetTaskName(),
 		}
 
-		server.Machine.StartInstance(instance)
+		server.Machine.RunInstanceIfNotAlreadyThere(instance)
 
 	}
 
 	out := &pb.CreateInstanceOutput{
 		InstanceId: instanceID,
-		Error:      nil,
 	}
 
 	return out, nil

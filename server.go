@@ -49,7 +49,7 @@ func (server *Server) Run_gRPC() error {
 	}
 
 	grpcServer := grpc.NewServer()
-	pb.RegisterMutationsServer(grpcServer, server)
+	pb.RegisterLaterServer(grpcServer, server)
 
 	log.Printf("Running gRPC server on port %d \n", gRPC_Server_Port)
 	return grpcServer.Serve(lis)
@@ -66,7 +66,7 @@ func (server *Server) Run_HTTP() error {
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 
 	gRPC_Endpoint := fmt.Sprintf("localhost:%d", gRPC_Server_Port)
-	err := pb.RegisterMutationsHandlerFromEndpoint(ctx, mux, gRPC_Endpoint, opts)
+	err := pb.RegisterLaterHandlerFromEndpoint(ctx, mux, gRPC_Endpoint, opts)
 	if err != nil {
 		return err
 	}

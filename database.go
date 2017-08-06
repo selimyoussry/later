@@ -7,8 +7,9 @@ import (
 )
 
 // Database lists what the database needs to be able to do for this library
+// note that the database might have extra functionality, these are minimum compatibility requirements
 type Database interface {
-	AbortInstances(taskName string, parameters []byte) ([]string, error)
+	AbortInstance(taskName string, instanceID string) error
 	CreateInstance(taskname string, executionTime time.Time, parameters []byte) (string, error)
 	GetInstances(start, end time.Time) ([]*structures.Instance, error)
 	GetLastPullTime() (*time.Time, error)
