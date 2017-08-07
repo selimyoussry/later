@@ -12,7 +12,7 @@ import (
 
 func main() {
 
-	// Use boltdb_single database, which runs on the same server as this node
+	// Use boltdb database, which runs on the same server as this node
 	db, err := boltdb.NewDatabaseFromEnv()
 	if err != nil {
 		log.Fatal(err)
@@ -36,6 +36,14 @@ func main() {
 		for {
 			err := gRPC_server.Run_gRPC()
 			log.Printf("Error with gRPC server %s \n", goutil.Pretty(err))
+		}
+	}()
+
+	// Serve on HTTP
+	go func() {
+		for {
+			err := gRPC_server.Run_HTTP()
+			log.Printf("Error with HTTP server %s \n", err)
 		}
 	}()
 
