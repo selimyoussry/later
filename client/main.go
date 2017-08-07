@@ -68,7 +68,7 @@ func get_successful() {
 
 }
 
-func add_instance() {
+func add_instance() string {
 
 	// Create gRPC connection
 	conn, err := grpc.Dial(grpc_address, grpc.WithInsecure())
@@ -96,6 +96,8 @@ func add_instance() {
 	}
 
 	log.Println(goutil.Pretty(out))
+
+	return out.GetInstanceId()
 
 }
 
@@ -145,10 +147,12 @@ func stats() {
 }
 func main() {
 
-	// add_instance()
-	// get_instances()
+	instanceID := add_instance()
+	get_instances()
 	get_successful()
-	// abort_instance("2017-08-05T19:28:38-04:00.4596768c-9a1d-4640-a54e-58b1ce9778ce")
+
+	time.Sleep(1 * time.Second)
+	abort_instance(instanceID)
 	stats()
 
 }
