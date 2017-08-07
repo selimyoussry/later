@@ -93,7 +93,7 @@ func main(){
     log.Fatal(err)
   }
 
-  // Then we listen for incoming connections on gRPC, port 9080
+  // Then we listen for incoming connections on gRPC, port 9081
 	gRPC_server := later.NewServer(machine, "")
 	go func() {
 		for {
@@ -102,7 +102,7 @@ func main(){
 		}
 	}()
 
-  // We also serve on HTTP, port 8080
+  // We also serve on HTTP, port 8081
   go func() {
     for {
       err := gRPC_server.Run_HTTP()
@@ -121,7 +121,7 @@ func main(){
 
 #### Docker
 
-If you'd like to Dockerize this program, you should expose ports 9080 (gRPC server) and 8080 (HTTP server).
+If you'd like to Dockerize this program, you should expose ports 9081 (gRPC server) and 8081 (HTTP server).
 
 
 #### Custom parameters
@@ -151,13 +151,15 @@ Following the built-in BoltDB driver in `/dbs/boltdb`, your database driver need
 
 ```go
 type Database interface {
-	AbortInstance(taskName string, instanceID string) error
-	CreateInstance(taskname string, executionTime time.Time, parameters []byte) (string, error)
+	AbortInstance(instanceID string) error
+	Close() error
+	CreateInstance(taskName string, executionTime time.Time, parameters []byte) (string, error)
 	GetInstances(start, end time.Time) ([]*structures.Instance, error)
-	GetLastPullTime() (*time.Time, error)
-	MarkAsSuccessful(taskName string, instanceID string) error
-	MarkAsFailed(taskName string, instanceID string) error
-	SetPullTime(t time.Time) error
+	GetAborted(start, end time.Time) ([]*structures.Instance, error)
+	GetSuccessful(start, end time.Time) ([]*structures.Instance, error)
+	GetFailed(start, end time.Time) ([]*structures.Instance, error)
+	MarkAsSuccessful(instanceID string) error
+	MarkAsFailed(instanceID string) error
 }
 ```
 

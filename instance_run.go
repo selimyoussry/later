@@ -49,8 +49,8 @@ func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instan
 	case <-timer.C:
 
 		// Run the task
-		response, err := task.Run(instance.Parameters)
 		machine.logger.Log("Running instance %s", instance.ID)
+		response, err := task.Run(instance.Parameters)
 
 		// If there is an error on run
 		if err != nil {
