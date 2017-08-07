@@ -13,12 +13,13 @@ type Machine struct {
 	Instances syncmap.Map // All the instances waiting to be executed in our go-routines
 
 	LatestPullTime *time.Time
-	Parameters     *MachineParameters
+	logger         *logger
+	Parameters     *machineParameters
 	Tasks          map[string]Task // All the tasks we've declared at compile time
 }
 
 // NewMachine instanciates
-func NewMachine(database Database, parameters *MachineParameters) *Machine {
+func NewMachine(database Database, parameters *machineParameters) *Machine {
 
 	if parameters == nil {
 		parameters = GetDefaultMachineParameters()
@@ -30,5 +31,6 @@ func NewMachine(database Database, parameters *MachineParameters) *Machine {
 		LatestPullTime: nil,
 		Tasks:          map[string]Task{},
 		Parameters:     parameters,
+		logger:         newLoggerFromEnv(),
 	}
 }

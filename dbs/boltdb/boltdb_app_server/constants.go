@@ -12,6 +12,7 @@ const (
 
 	KEY_LAST_PULL_TIME = "LastPullTime"
 
-	gRPC_Server_Port = 9080
-	HTTP_Server_Port = 8080
+	gRPC_Server_Port      = 9080
+	HTTP_Server_Port      = 8080
+	HTTP_gRPC_Server_Port = 8081
 )

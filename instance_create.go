@@ -17,6 +17,8 @@ func (machine *Machine) CreateInstance(taskName string, executionTime time.Time,
 		return nil, err
 	}
 
+	executionTime = executionTime.UTC()
+
 	instance := &structures.Instance{
 		ExecutionTime: executionTime,
 		ID:            instanceID,
@@ -31,6 +33,13 @@ func (machine *Machine) CreateInstance(taskName string, executionTime time.Time,
 			machine.RunInstanceIfNotAlreadyThere(instance)
 		}()
 	}
+
+	machine.logger.Log("Created instance %s for task %s, running at %s, with parameters %s",
+		instanceID,
+		taskName,
+		executionTime.Format(time.RFC3339),
+		string(parameters),
+	)
 
 	return instance, nil
 

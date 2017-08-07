@@ -71,6 +71,7 @@ func (server *Server) Run_HTTP() error {
 		return err
 	}
 
+	log.Printf("Running HTTP server on port %d \n", HTTP_Server_Port)
 	portStr := fmt.Sprintf(":%d", HTTP_Server_Port)
 	return http.ListenAndServe(portStr, mux)
 }

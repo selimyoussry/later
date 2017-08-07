@@ -3,7 +3,6 @@ package later
 import (
 	"time"
 
-	"github.com/hippoai/goutil"
 	"github.com/hippoai/later/structures"
 )
 
@@ -21,10 +20,22 @@ func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instan
 	localInstance := NewLocalInstance(instance, task)
 	machine.Instances.Store(instance.ID, localInstance)
 
-	// At the end of the run, close the channel and delete the instance it from the local store
+	// At the end of the run
 	defer func() {
+
+		// Recover if it dies
+		r := recover()
+		if r != nil {
+			machine.logger.ForceLog("Instance %s died with error %v",
+				instance.ID,
+				r,
+			)
+		}
+
+		// , close the channel and delete the instance it from the local store
 		close(localInstance.AbortChannel)
 		machine.Instances.Delete(instance.ID)
+		machine.logger.Log("Done with instance %s", instance.ID)
 	}()
 
 	// Create a timer to trigger the instance at the right time
@@ -38,32 +49,25 @@ func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instan
 	case <-timer.C:
 
 		// Run the task
+		machine.logger.Log("Running instance %s", instance.ID)
 		response, err := task.Run(instance.Parameters)
 
 		// If there is an error on run
 		if err != nil {
 
 			// Log the error
-			goutil.Log("Error on running instance %s - Got %s",
-				instance.ID,
-				goutil.Stringify(err),
-			)
+			machine.logger.Log("Error on running instance %s - Got %s", instance.ID, err)
 
 			// Run OnFail callback for this task
 			err = task.OnFail(err)
 			if err != nil {
-				goutil.Log("Error on failing %s - Got %s",
-					instance.ID,
-					goutil.Stringify(err),
-				)
+				machine.logger.Log("Error on failing %s - Got %s", instance.ID, err)
 			}
 
 			// Save the failed instance in the database
 			err = machine.Database.MarkAsFailed(instance.ID)
 			if err != nil {
-				goutil.Log("Error on saving failed to db %s",
-					goutil.Stringify(err),
-				)
+				machine.logger.Log("Error on saving failed to db %s", err)
 			}
 
 			// Exit the function
@@ -76,18 +80,13 @@ func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instan
 		// Run OnSuccess callback
 		err = task.OnSuccess(response)
 		if err != nil {
-			goutil.Log("Error on success %s - Got %s",
-				instance.ID,
-				goutil.Stringify(err),
-			)
+			machine.logger.Log("Error on success %s - Got %s", instance.ID, err)
 		}
 
 		// Save the success in the database
 		err = machine.Database.MarkAsSuccessful(instance.ID)
 		if err != nil {
-			goutil.Log("Error on saving success to db %s",
-				goutil.Stringify(err),
-			)
+			machine.logger.Log("Error on saving success to db %s", err)
 		}
 
 		// Abort this instance
@@ -95,7 +94,7 @@ func (machine *Machine) RunInstanceIfNotAlreadyThere(instance *structures.Instan
 		// This just prevents the instance from running locally
 		// It is removed from the database by the "AbortInstance" function
 	case <-localInstance.AbortChannel:
-		goutil.Log("Aborting instance %s at %s | Task %s scheduled for %s with parameters %s",
+		machine.logger.Log("Aborting instance %s at %s | Task %s scheduled for %s with parameters %s",
 			instance.ID,
 			time.Now().String(),
 			task.GetName(),
