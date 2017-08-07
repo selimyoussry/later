@@ -124,6 +124,12 @@ func main(){
 If you'd like to Dockerize this program, you should expose ports 9080 (gRPC server) and 8080 (HTTP server).
 
 
+#### Custom parameters
+
+Later pulls the jobs for the next X minutes, every Y minutes. X is set by default to 10 minutes, and Y to 5 minutes. Depending on how much memory you have and how many jobs you are planning, you can customize these parameters by using the `NewMachineParameters(recurrence, timeAhead time.Duration)` instead of `nil` when creating a new machine with `later.NewMachine`.
+
+Also, you can make this library not verbose with having an environment variable `LATER_VERBOSE=0`. By default it will log everything.
+
 ### Database
 
 Later needs a database implementing the following interface to schedule jobs. We provide an application server using BoltDB that implements it, or you can write your own using your database of choice.
@@ -160,10 +166,11 @@ type Database interface {
 
 - [x] Clean up code and isolate functionalities and pipelines
 - [x] Separate BoltDB database as standalone, open over gRPC
-- [ ] Add BoltDB stats views and HTTP endpoint
 - [ ] Secure the transactions
 - [ ] Make it cluster-able
 - [x] Tutorial in the Readme
 - [ ] Add simple UI
-- [ ] Add logs
+- [x] Add logs
 - [x] Add backup to BoltDB
+- [x] Recover crashing instances
+- [ ] Unit tests
